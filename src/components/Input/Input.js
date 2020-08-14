@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const useInputs = (values) => {
   const [state, setState] = useState(values);
@@ -14,7 +14,7 @@ export const useInputs = (values) => {
 };
 
 export const submit = async (obj, method) => {
-  console.log(obj)
+  console.log(obj);
   const _API_KEY = 'AIzaSyATSj6YwarLnzR7NFPKLyRV_WfE_kkGDWM';
   const responce = await fetch(
     `https://identitytoolkit.googleapis.com/v1/accounts:${method}?key=${_API_KEY}`,
@@ -28,8 +28,7 @@ export const submit = async (obj, method) => {
   );
   const result = await responce.json();
 
-  console.log(result)
+  console.log(result);
 
   document.cookie = `user_idToken=${result.idToken}; max-age=${result.expiresIn}`;
 };
-
