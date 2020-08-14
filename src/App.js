@@ -21,7 +21,7 @@ function App() {
           <Route path="/films">
             <FilmList />
           </Route>
-          <Route path="/register">
+          <Route path="/registration">
             <UserRegister />
           </Route>
           <Route path="/">

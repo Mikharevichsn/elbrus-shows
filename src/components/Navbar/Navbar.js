@@ -7,9 +7,9 @@ import './style.sass';
 const NavBar = () => {
   return (
     <Nav className="navbar  navbar-dark bg-dark menu">
-        <Link to="/">
-          <img className= "logo"  src={logo} />
-        </Link>
+      <Link to="/">
+        <img className="logo" src={logo} />
+      </Link>
       <NavItem className="a">
         <NavLink className="link">
           <Link to="/registration">Регистрация</Link>
@@ -22,7 +22,7 @@ const NavBar = () => {
       </NavItem>
       <NavItem className="a">
         <NavLink className="link">
-          <Link to="/serials">Сериалы</Link>
+          <Link to="/films">Кинчики</Link>
         </NavLink>
       </NavItem>
     </Nav>
