@@ -6,10 +6,9 @@ import Content from './components/Content/Content';
 import { Container, Navbar } from 'reactstrap';
 import NavBar from './components/Navbar/Navbar';
 import './public/app.css'
-import { Route } from 'react-router-dom';
-import login from './components/Login/Login';
 import FilmList from './components/Films/FilmList';
 import UserRegister from './components/User/UserRegister';
+import Login from './components/Login/Login.jsx';
 
 
 function App() {
@@ -18,6 +17,9 @@ function App() {
       <NavBar />
       <Container>
         <Switch>
+        <Route path="/login">
+            <Login />
+          </Route>
           <Route path="/films">
             <FilmList />
           </Route>
