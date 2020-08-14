@@ -3,7 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Content from './components/Content/Content';
-import { Container} from 'reactstrap';
+import { Container } from 'reactstrap';
+
 import NavBar from './components/Navbar/Navbar';
 import './public/app.css'
 import FilmList from './components/Films/FilmList';
