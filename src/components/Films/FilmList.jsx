@@ -4,7 +4,7 @@ import { getContent } from '../../redux/action';
 import FilmCard from './FilmCard';
 
 export default function FilmList() {
-  const filmList = useSelector((state) => state.content); //Ссылка на хранилище
+  const filmList = useSelector((state) => state.films); //Ссылка на хранилище
 
   const dispatch = useDispatch();
 
