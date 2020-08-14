@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Content from './components/Content/Content';
-import { Container, Navbar } from 'reactstrap';
+import { Container} from 'reactstrap';
 import NavBar from './components/Navbar/Navbar';
 import FilmList from './components/Films/FilmList';
 import './public/app.css';
