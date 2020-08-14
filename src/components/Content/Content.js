@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getContent } from '../redux/action';
+import { getContent } from '../../redux/action';
 import { Button } from 'reactstrap';
 
 export const Content = () => {
@@ -15,7 +15,7 @@ export const Content = () => {
   return (
     <>
    <Button onClick = { (e) => {e.preventDefault();  dispatch(getContent())}}>Button</Button>
-  <div>{  <img style={{  width: "600px", height: "500px"}} alt=" Cat" src={cat} />}</div>
+  <div>{  <img style={{  width: "600px", height: "500px"}} alt="Cat" src={cat} />}</div>
   </>
   );
 }

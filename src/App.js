@@ -1,18 +1,22 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'; 
 
-import Content from './components/content';
-import { Container } from 'reactstrap';
-
+import Content from './components/Content/Content';
+import { Container, Navbar } from 'reactstrap';
+import NavBar from './components/Navbar/Navbar';
+import './public/app.css'
 
 
 function App() {
  
-
   return (
-   <Container>
+<>
+    <NavBar/>
+   <Container >
+ 
  <Content/>
    </Container>
+   </>
   );
 }
 
