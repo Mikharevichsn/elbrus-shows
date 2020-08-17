@@ -9,16 +9,15 @@ import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
 // import * as serviceWorker from './serviceWorker';
 //саги
-import createSagaMiddleware from "redux-saga"
+import createSagaMiddleware from 'redux-saga';
 import rootSaga from './redux/saga/saga';
-
 
 import App from './App';
 import { reducer } from './redux/reducer';
 import { loadState, saveState } from './redux/localStorage';
 
 // создать мидлвейр
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 const persistedState = loadState();
 
@@ -28,10 +27,10 @@ const store = createStore(
   reducer,
   persistedState,
   composeWithDevTools(applyMiddleware(thunk, logger, sagaMiddleware)) // подключить мидлвейв в стор
-  );
-  
-  // запустить сагу
-  sagaMiddleware.run(rootSaga)
+);
+
+// запустить сагу
+sagaMiddleware.run(rootSaga);
 
 // const store = createStore(
 //   reducer,
@@ -42,7 +41,7 @@ const store = createStore(
 store.subscribe(() => {
   saveState({
     films: store.getState().films,
-    moreDetalisFilm: store.getState().moreDetalisFilm
+    moreDetalisFilm: store.getState().moreDetalisFilm,
   });
 });
 

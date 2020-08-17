@@ -1,4 +1,9 @@
-import { GET_FILMLIST, START_FETCH, GET_FILM_ID, RECEIVE_DATA_FROM_FETCH} from './actionTypes';
+import {
+  GET_FILMLIST,
+  START_FETCH,
+  GET_FILM_ID,
+  RECEIVE_DATA_FROM_FETCH,
+} from './actionTypes';
 
 export const getContent = () => {
   return async (dispatch) => {
@@ -15,23 +20,21 @@ export const getContent = () => {
   };
 };
 
-
 export const getMoreDetalis = (payload) => {
   return {
     type: GET_FILM_ID,
-    payload
-  }
-}
+    payload,
+  };
+};
 
 export const startFetch = (id) => {
-  return { type: START_FETCH, id }
-}
-
+  return { type: START_FETCH, id };
+};
 
 export const receiveDataFromFetch = (payload) => {
-  console.log(payload)
+  console.log(payload);
   return {
     type: RECEIVE_DATA_FROM_FETCH,
-    payload
-  }
-}
+    payload,
+  };
+};
