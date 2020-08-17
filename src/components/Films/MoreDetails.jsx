@@ -29,7 +29,7 @@ console.log(moreDetalisFilm)
               <img
                 style={{ width: '70%' }}
                 src={`${film.posterUrlPreview}`}
-                alt={filmList.length > 0 &&`Poster ${film.nameEn}`}
+                alt={`Poster ${film.nameEn}`}
               />
             </Col>
 

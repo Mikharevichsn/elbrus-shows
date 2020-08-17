@@ -5,15 +5,18 @@ export const reducer = (state, action) => {
 
     case GET_FILMLIST:
       return {
+        ...state,
         films: action.payload,
       };
    
       case RECEIVE_DATA_FROM_FETCH:
         return {
+          ...state,
           moreDetalisFilm:  action.payload.data
         }
         case GET_FILM_ID:
           return {
+            ...state,
             moreDetalisFilm: action.payload
           }
     default:

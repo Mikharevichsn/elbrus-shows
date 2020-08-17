@@ -8,7 +8,6 @@ import { Container } from 'reactstrap';
 import NavBar from './components/Navbar/Navbar';
 import './public/app.css';
 import FilmList from './components/Films/FilmList';
-import FilmList2 from './components/Films/FilmList2';
 import UserRegister from './components/User/UserRegister';
 import Login from './components/Login/Login.jsx';
 import MoreDetails from './components/Films/MoreDetails';
@@ -16,30 +15,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
 
 function App() {
-
-
-
   const dispatch = useDispatch();
   useEffect(() => {
     //useEffect для загрузки контента при внедрение этого компонента
     dispatch(getContent());
   }, [dispatch]);
 
-
-
   return (
     <>
       <NavBar />
       <Container>
         <Switch>
-        <Route path="/films/:id">
-<MoreDetails/>
+          <Route path="/films/:id">
+            <MoreDetails />
           </Route>
-        <Route path="/login">
+          <Route path="/login">
             <Login />
-          </Route>
-          <Route path="/films2">
-            <FilmList2 />
           </Route>
           <Route path="/films">
             <FilmList />
