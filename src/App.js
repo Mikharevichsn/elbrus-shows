@@ -11,6 +11,7 @@ import FilmList from './components/Films/FilmList';
 import FilmList2 from './components/Films/FilmList2';
 import UserRegister from './components/User/UserRegister';
 import Login from './components/Login/Login.jsx';
+import MoreDetails from './components/Films/MoreDetails';
 
 function App() {
   return (
@@ -18,7 +19,10 @@ function App() {
       <NavBar />
       <Container>
         <Switch>
-          <Route path="/login">
+        <Route path="/film/:id">
+<MoreDetails/>
+          </Route>
+        <Route path="/login">
             <Login />
           </Route>
           <Route path="/films2">
