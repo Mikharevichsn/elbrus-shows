@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -13,9 +12,15 @@ import FilmList2 from './components/Films/FilmList2';
 import UserRegister from './components/User/UserRegister';
 import Login from './components/Login/Login.jsx';
 import MoreDetails from './components/Films/MoreDetails';
+import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    //useEffect для загрузки контента при внедрение этого компонента
+    dispatch(getContent());
+  }, [dispatch]);
 
   return (
     <>

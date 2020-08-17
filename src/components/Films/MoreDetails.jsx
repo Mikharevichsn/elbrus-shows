@@ -6,13 +6,8 @@ import { Container, Row, Col } from 'reactstrap';
 
 const MoreDetails = () => {
   const filmList = useSelector((state) => state.films);
-  console.log('filmList', filmList);
-  const params = useParams();
-  console.log('params> ', params);
   const filmOne = useParams().id;
-  console.log('filmOne> ', filmOne);
   const film = filmList.find((el) => el.nameRu === filmOne);
-  console.log('film> ', film);
 
   return (
     <Container>
