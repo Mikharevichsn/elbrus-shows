@@ -7,23 +7,25 @@ import { Container, Row, Col } from 'reactstrap';
 const MoreDetails = () => {
   // const [stateFilms, setState] = useState([]);
 
-  const dispatch = useDispatch()
-  const moreDetalisFilm = useSelector(state => state.moreDetalisFilm)
+  const dispatch = useDispatch();
+  const moreDetalisFilm = useSelector((state) => state.moreDetalisFilm);
 
   const filmList = useSelector((state) => state.films);
   const filmOne = useParams().id;
 
-  const film =  filmList.find((el) => el.nameRu === filmOne);
-  dispatch(startFetch(film.filmId))
+  const film = filmList.find((el) => el.nameRu === filmOne);
 
-console.log(moreDetalisFilm)
+  useEffect(() => {
+    dispatch(startFetch(film.filmId));
+  }, [dispatch]);
+ 
+
+  console.log(moreDetalisFilm);
 
   return (
     <Container>
-      {film && ( 
-
+      {film && (
         <>
-  
           <Row>
             <Col>
               <img
@@ -73,6 +75,22 @@ console.log(moreDetalisFilm)
                   <tr>
                     <th scope="row">Рейтинг фильма</th>
                     <td style={{ color: ' #d94f5c' }}>{film.rating}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Возраст / Рейтинг MPAA</th>
+                      <td>{moreDetalisFilm.ratingAgeLimits} / {moreDetalisFilm.ratingMpaa}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Количество голосов</th>
+                    <td>{film.ratingVoteCount}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Количество голосов</th>
+                    <td>{film.ratingVoteCount}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Количество голосов</th>
+                    <td>{film.ratingVoteCount}</td>
                   </tr>
                   <tr>
                     <th scope="row">Количество голосов</th>
