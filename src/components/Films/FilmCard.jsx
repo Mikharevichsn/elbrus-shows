@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import {
   Card,
   Button,
@@ -17,11 +19,12 @@ export default function FilmCard(props) {
   return (
     <CardGroup>
       <Card>
+        <Link to={`/films/${film.nameRu}`}>
         <CardImg
           style={{ width: '25%' }}
           src={`${film.posterUrl}`}
           alt="Card image cap"
-        />
+        /></Link>
         <CardBody>
           <CardTitle>{`"${film.nameRu}", ${film.year}`}</CardTitle>
           {film.countries.map((el, i) => {
@@ -35,6 +38,8 @@ export default function FilmCard(props) {
             
           </CardText>
           <Button>Добавить</Button>
+
+      
         </CardBody>
       </Card>
     </CardGroup>

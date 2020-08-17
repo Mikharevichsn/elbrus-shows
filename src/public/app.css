@@ -1,4 +1,7 @@
-body {background: #343a40;}
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
+body {background: #343a40; color: white;   font-family: "Varela Round", sans-serif;
+}
 
 pre {color: white;}
 
