@@ -15,10 +15,13 @@ const MoreDetails = () => {
         <>
           <Row>
             <Col>
-              <img style={{ width: '70%' }} src={`${film.posterUrlPreview}` }  alt={`Poster ${film.nameEn}`}/>
-     
+              <img
+                style={{ width: '70%' }}
+                src={`${film.posterUrlPreview}`}
+                alt={`Poster ${film.nameEn}`}
+              />
             </Col>
-            
+
             <Col>
               <h1>{film.nameRu} </h1>
               <p className="font-weight-light">{film.nameEn}</p>
@@ -66,7 +69,6 @@ const MoreDetails = () => {
                   </tr>
                 </tbody>
               </table>
-              
             </Col>
           </Row>
         </>

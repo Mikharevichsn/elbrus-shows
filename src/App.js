@@ -15,26 +15,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
 
 function App() {
-
-
-
   const dispatch = useDispatch();
   useEffect(() => {
     //useEffect для загрузки контента при внедрение этого компонента
     dispatch(getContent());
   }, [dispatch]);
 
-
-
   return (
     <>
       <NavBar />
       <Container>
         <Switch>
-        <Route path="/films/:id">
-<MoreDetails/>
+          <Route path="/films/:id">
+            <MoreDetails />
           </Route>
-        <Route path="/login">
+          <Route path="/login">
             <Login />
           </Route>
           <Route path="/films">
