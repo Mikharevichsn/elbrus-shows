@@ -21,6 +21,13 @@ const NavBar = () => {
         </Link>
       </NavItem>
       <NavItem className="a">
+        <Link className="link" to="/films2">
+          Кинчики2
+        <Link className="link" to="/films">
+          Кинчики
+        </Link>
+      </NavItem>
+      <NavItem className="a">
         <Link className="link" to="/login">
           Войти
         </Link>
