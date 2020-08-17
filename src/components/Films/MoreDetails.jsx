@@ -1,24 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContent } from '../../redux/action';
+import { getContent, startFetch } from '../../redux/action';
 import { Container, Row, Col } from 'reactstrap';
 
 const MoreDetails = () => {
+  // const [stateFilms, setState] = useState([]);
+
+  const dispatch = useDispatch()
+  const moreDetalisFilm = useSelector(state => state.moreDetalisFilm)
+
   const filmList = useSelector((state) => state.films);
   const filmOne = useParams().id;
-  const film = filmList.find((el) => el.nameRu === filmOne);
+
+  const film =  filmList.find((el) => el.nameRu === filmOne);
+  dispatch(startFetch(film.filmId))
+
+console.log(moreDetalisFilm)
 
   return (
     <Container>
-      {filmList && (
+      {film && ( 
+
         <>
+  
           <Row>
             <Col>
-              <img style={{ width: '70%' }} src={`${film.posterUrlPreview}` }  alt={`Poster ${film.nameEn}`}/>
-     
+              <img
+                style={{ width: '70%' }}
+                src={`${film.posterUrlPreview}`}
+                alt={filmList.length > 0 &&`Poster ${film.nameEn}`}
+              />
             </Col>
-            
+
             <Col>
               <h1>{film.nameRu} </h1>
               <p className="font-weight-light">{film.nameEn}</p>
@@ -66,7 +80,6 @@ const MoreDetails = () => {
                   </tr>
                 </tbody>
               </table>
-              
             </Col>
           </Row>
         </>

@@ -8,17 +8,28 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
 // import * as serviceWorker from './serviceWorker';
+//саги
+import createSagaMiddleware from "redux-saga"
+import rootSaga from './redux/saga/saga';
+
 
 import App from './App';
 import { reducer } from './redux/reducer';
 
-const tempStore = { films: [] }; //Создание подхранилищ
+// создать мидлвейр
+const sagaMiddleware = createSagaMiddleware()
+
+
+const tempStore = { films: [], moreDetalisFilm: {}}; //Создание подхранилищ
 
 const store = createStore(
   reducer,
   tempStore,
-  composeWithDevTools(applyMiddleware(thunk, logger))
+  composeWithDevTools(applyMiddleware(thunk, logger, sagaMiddleware)) // подключить мидлвейв в стор
 );
+
+// запустить сагу
+sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
   <React.StrictMode>

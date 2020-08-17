@@ -20,7 +20,6 @@ export default function FilmList2() {
   const [filteredFilms, setFilteredFilms] = useState([]);
   const countPages = Math.ceil(filteredFilms.length / filmsOnPage);
   const pages = new Array(countPages).fill('qqq');
-  console.log('pages: ', pages);
 
   useEffect(() => {
     setFilteredFilms(() => {
@@ -40,7 +39,6 @@ export default function FilmList2() {
         name=""
         id=""
         onChange={(event) => {
-          console.log(event.target.value);
           setGenre(event.target.value);
         }}
       >

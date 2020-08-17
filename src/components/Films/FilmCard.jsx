@@ -14,17 +14,17 @@ import {
 
 export default function FilmCard(props) {
   const { film } = props;
-  console.log(film);
 
   return (
     <CardGroup>
       <Card>
         <Link to={`/films/${film.nameRu}`}>
-        <CardImg
-          style={{ width: '25%' }}
-          src={`${film.posterUrl}`}
-          alt="Card image cap"
-        /></Link>
+          <CardImg
+            style={{ width: '25%' }}
+            src={`${film.posterUrl}`}
+            alt="Card image cap"
+          />
+        </Link>
         <CardBody>
           <CardTitle>{`"${film.nameRu}", ${film.year}`}</CardTitle>
           {film.countries.map((el, i) => {
@@ -34,12 +34,8 @@ export default function FilmCard(props) {
               return <CardSubtitle>{`${el.country}, `}</CardSubtitle>;
             }
           })}
-          <CardText>
-            
-          </CardText>
+          <CardText></CardText>
           <Button>Добавить</Button>
-
-      
         </CardBody>
       </Card>
     </CardGroup>
