@@ -21,11 +21,6 @@ const NavBar = () => {
         </Link>
       </NavItem>
       <NavItem className="a">
-        <Link className="link" to="/films2">
-          Кинчики2
-        </Link>
-      </NavItem>
-      <NavItem className="a">
         <Link className="link" to="/login">
           Войти
         </Link>
