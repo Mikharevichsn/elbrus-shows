@@ -7,13 +7,6 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 export default function FilmList2() {
   const filmList = useSelector((state) => state.films); //Ссылка на хранилище
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    //useEffect для загрузки контента при внедрение этого компонента
-    dispatch(getContent());
-  }, [dispatch]);
-
   const [currentPage, setCurrentPage] = useState(0);
   const [filmsOnPage, setFilmsOnPage] = useState(20);
   const [genre, setGenre] = useState('all');
@@ -73,7 +66,9 @@ export default function FilmList2() {
         {pages.map((elem, index) => {
           return (
             <PaginationItem>
-              <PaginationLink href="#" onClick={() => setCurrentPage(index)}>{index + 1}</PaginationLink>
+              <PaginationLink href="#" onClick={() => setCurrentPage(index)}>
+                {index + 1}
+              </PaginationLink>
             </PaginationItem>
           );
         })}
