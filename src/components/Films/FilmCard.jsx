@@ -15,7 +15,6 @@ import {
 
 export default function FilmCard(props) {
   const { film } = props;
-  console.log(film);
 
   return (
     <Col sm="4" lg="3" xs="12">
