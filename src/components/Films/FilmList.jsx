@@ -6,12 +6,6 @@ import FilmCard from './FilmCard';
 export default function FilmList() {
   const filmList = useSelector((state) => state.films); //Ссылка на хранилище
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    //useEffect для загрузки контента при внедрение этого компонента
-    dispatch(getContent());
-  }, [dispatch]);
 
   return (
     <div>
