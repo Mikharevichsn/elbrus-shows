@@ -28,13 +28,30 @@ export default function FilmList() {
 
   return (
     <>
-    {/* Сортировка */}
+      {/* Сортировка */}
       <select
         name=""
         id=""
         onChange={(event) => {
           console.log(event.target.value);
-          setCurrentPage(0)
+          setCurrentPage(0);
+          setGenre(event.target.value);
+        }}
+      >
+        <option value="all" selected>
+          Не выбран
+        </option>
+        <option value="мультфильм">мультфильм</option>
+        <option value="аниме">аниме</option>
+      </select>
+
+      {/* Фильтр */}
+      <select
+        name=""
+        id=""
+        onChange={(event) => {
+          console.log(event.target.value);
+          setCurrentPage(0);
           setGenre(event.target.value);
         }}
       >
@@ -59,24 +76,6 @@ export default function FilmList() {
         <option value="музыка">музыка</option>
         <option value="семейный">семейный</option>
       </select>
-
-      {/* Фильтр */}
-      <select
-        name=""
-        id=""
-        onChange={(event) => {
-          console.log(event.target.value);
-          setCurrentPage(0)
-          setGenre(event.target.value);
-        }}
-      >
-        <option value="all" selected>
-          Не выбран
-        </option>
-        <option value="мультфильм">Мультфильм</option>
-        <option value="драма">драма</option>
-        <option value="комедия">комедия</option>
-      </select>
       <div className="filmList">
         <Row>
           {filmList &&
@@ -90,35 +89,80 @@ export default function FilmList() {
             })}
         </Row>
       </div>
+
       <Pagination aria-label="Page navigation example">
-        <PaginationItem>
-          <PaginationLink first href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink previous href="#" />
-        </PaginationItem>
+        {currentPage > 0 && (
+          <PaginationItem>
+            {/* Переход на первую страницу */}
+            <PaginationLink
+              first
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(0);
+              }}
+            />
+          </PaginationItem>
+        )}
+
+        {currentPage > 0 && (
+          <PaginationItem>
+            {/* Переход на страницу назад */}
+            <PaginationLink
+              previous
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(currentPage - 1);
+              }}
+            />
+          </PaginationItem>
+        )}
 
         {pages.map((_, index) => {
           return (
-            <PaginationItem>
-              <PaginationLink href="#" onClick={() => setCurrentPage(index)}>
+            <PaginationItem active={currentPage === index}>
+              {/* Переход на выбранную страницу */}
+              <PaginationLink
+                href="#"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setCurrentPage(index);
+                }}
+              >
                 {index + 1}
               </PaginationLink>
             </PaginationItem>
           );
         })}
-        <PaginationItem>
-          <PaginationLink
-            next
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-            }}
-          />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink last href="#" />
-        </PaginationItem>
+        
+        {currentPage != pages.length - 1 && (
+          <PaginationItem>
+            {/* Переход на страницу вперед */}
+            <PaginationLink
+              next
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(currentPage + 1);
+              }}
+            />
+          </PaginationItem>
+        )}
+
+        {currentPage != pages.length - 1 && (
+          <PaginationItem>
+            <PaginationLink
+              // {/* Переход на последнюю страницу */}
+              last
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(pages.length - 1);
+              }}
+            />
+          </PaginationItem>
+        )}
       </Pagination>
     </>
   );
