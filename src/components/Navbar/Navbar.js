@@ -8,16 +8,27 @@ const NavBar = () => {
   return (
     <Nav className="navbar  navbar-dark bg-dark menu">
       <Link to="/">
-        <img className="logo" src={logo} alt = "logo"/>
+        <img className="logo" src={logo} alt="logo" />
       </Link>
       <NavItem className="a">
-          <Link className="link" to="/registration">Регистрация</Link>
+        <Link className="link" to="/registration">
+          Регистрация
+        </Link>
       </NavItem>
       <NavItem className="a">
-          <Link className="link" to="/login">Login</Link>
+        <Link className="link" to="/login">
+          Login
+        </Link>
       </NavItem>
       <NavItem className="a">
-          <Link className="link"to="/films">Кинчики</Link>
+        <Link className="link" to="/films">
+          Кинчики
+        </Link>
+      </NavItem>
+      <NavItem className="a">
+        <Link className="link" to="/films2">
+          Кинчики2
+        </Link>
       </NavItem>
     </Nav>
   );
