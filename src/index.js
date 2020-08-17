@@ -11,14 +11,21 @@ import { logger } from 'redux-logger';
 
 import App from './App';
 import { reducer } from './redux/reducer';
+import { loadState, saveState } from './redux/localStorage';
 
-const tempStore = { films: [1, 2, 3] }; //Создание подхранилищ
+const persistedState = loadState();
 
 const store = createStore(
   reducer,
-  tempStore,
+  persistedState,
   composeWithDevTools(applyMiddleware(thunk, logger))
 );
+
+store.subscribe(() => {
+  saveState({
+    films: store.getState().films
+  });
+});
 
 ReactDOM.render(
   <React.StrictMode>
