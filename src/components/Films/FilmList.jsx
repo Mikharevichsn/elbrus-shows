@@ -9,11 +9,12 @@ export default function FilmList() {
   const [currentPage, setCurrentPage] = useState(0);
   const [filmsOnPage, setFilmsOnPage] = useState(20);
   const [genre, setGenre] = useState('all');
+  const [sort, setSort] = useState('all');
   const [filteredFilms, setFilteredFilms] = useState([]);
+  const [sortedFilms, setSortedFilms] = useState([]);
   const countPages = Math.ceil(filteredFilms.length / filmsOnPage);
   const pages = new Array(countPages).fill('');
-  console.log('pages: ', pages);
-
+  
   useEffect(() => {
     setFilteredFilms(() => {
       if (genre !== 'all') {
@@ -26,6 +27,8 @@ export default function FilmList() {
     });
   }, [filmList, genre]);
 
+
+
   return (
     <>
       {/* Сортировка */}
@@ -35,14 +38,14 @@ export default function FilmList() {
         onChange={(event) => {
           console.log(event.target.value);
           setCurrentPage(0);
-          setGenre(event.target.value);
+          setSort(event.target.value);
         }}
       >
         <option value="all" selected>
           Не выбран
         </option>
-        <option value="мультфильм">мультфильм</option>
-        <option value="аниме">аниме</option>
+        <option value="rateIncrease">По возрастанию рейтинга</option>
+        
       </select>
 
       {/* Фильтр */}
@@ -50,7 +53,6 @@ export default function FilmList() {
         name=""
         id=""
         onChange={(event) => {
-          console.log(event.target.value);
           setCurrentPage(0);
           setGenre(event.target.value);
         }}
