@@ -12,7 +12,7 @@ export default function FilmList() {
       {filmList &&
         filmList.map((film, i) => {
           while (i < 500) {
-            return <FilmCard key = {i} film={film} id = {i}/>;
+            return <FilmCard key={i} film={film} />;
           }
         })}
     </div>
