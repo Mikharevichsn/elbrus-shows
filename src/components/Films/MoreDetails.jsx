@@ -2,31 +2,27 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '../../redux/action';
-import { Tabs } from 'react-bootstrap';
 import { Container, Row, Col } from 'reactstrap';
 
 const MoreDetails = () => {
   const filmList = useSelector((state) => state.content);
   const filmOne = useParams().id;
-  // const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   //useEffect для загрузки контента при внедрение этого компонента
-  //   dispatch(getContent());
-  // }, [dispatch]);
 
-  const film = filmList.find((el) => el.nameEn === filmOne);
+  const film = filmList.find((el) => el.nameRu === filmOne);
   console.log(film);
 
   return (
     <Container>
       {filmList && (
         <>
-          <Row></Row>
+          
           <Row>
             <Col>
-              <img style={{ width: '70%' }} src={`${film.posterUrlPreview}`} />
+              <img style={{ width: '70%' }} src={`${film.posterUrlPreview}` }  alt={`Poster ${film.nameEn}`}/>
+     
             </Col>
+            
             <Col>
               <h1>{film.nameRu} </h1>
               <p className="font-weight-light">{film.nameEn}</p>
@@ -74,6 +70,7 @@ const MoreDetails = () => {
                   </tr>
                 </tbody>
               </table>
+              
             </Col>
           </Row>
         </>
