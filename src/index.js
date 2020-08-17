@@ -12,7 +12,7 @@ import { logger } from 'redux-logger';
 import App from './App';
 import { reducer } from './redux/reducer';
 
-const tempStore = { content: '' }; //Создание подхранилищ
+const tempStore = { films: [] }; //Создание подхранилищ
 
 const store = createStore(
   reducer,
