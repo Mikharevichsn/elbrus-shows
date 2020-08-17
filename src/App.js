@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -12,17 +13,19 @@ import FilmList2 from './components/Films/FilmList2';
 import UserRegister from './components/User/UserRegister';
 import Login from './components/Login/Login.jsx';
 import MoreDetails from './components/Films/MoreDetails';
+import { getContent } from './redux/action';
 
 function App() {
+
   return (
     <>
       <NavBar />
       <Container>
         <Switch>
-        <Route path="/film/:id">
-<MoreDetails/>
+          <Route path="/films/:id">
+            <MoreDetails />
           </Route>
-        <Route path="/login">
+          <Route path="/login">
             <Login />
           </Route>
           <Route path="/films2">

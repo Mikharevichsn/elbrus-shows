@@ -5,24 +5,28 @@ import { getContent } from '../../redux/action';
 import { Container, Row, Col } from 'reactstrap';
 
 const MoreDetails = () => {
-  const filmList = useSelector((state) => state.content);
+  const filmList = useSelector((state) => state.films);
+  console.log('filmList', filmList);
+  const params = useParams();
+  console.log('params> ', params);
   const filmOne = useParams().id;
-
-
+  console.log('filmOne> ', filmOne);
   const film = filmList.find((el) => el.nameRu === filmOne);
-  console.log(film);
+  console.log('film> ', film);
 
   return (
     <Container>
       {filmList && (
         <>
-          
           <Row>
             <Col>
-              <img style={{ width: '70%' }} src={`${film.posterUrlPreview}` }  alt={`Poster ${film.nameEn}`}/>
-     
+              <img
+                style={{ width: '70%' }}
+                src={`${film.posterUrlPreview}`}
+                alt={`Poster ${film.nameEn}`}
+              />
             </Col>
-            
+
             <Col>
               <h1>{film.nameRu} </h1>
               <p className="font-weight-light">{film.nameEn}</p>
@@ -70,7 +74,6 @@ const MoreDetails = () => {
                   </tr>
                 </tbody>
               </table>
-              
             </Col>
           </Row>
         </>
