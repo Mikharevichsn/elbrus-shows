@@ -13,6 +13,7 @@ import Login from './components/Login/Login.jsx';
 import MoreDetails from './components/Films/MoreDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
+import UserInfo from './components/User/UserInfo';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <UserInfo />
       <Container>
         <Switch>
           <Route path="/films/:id">

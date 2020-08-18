@@ -3,6 +3,7 @@ import {
   START_FETCH,
   GET_FILM_ID,
   RECEIVE_DATA_FROM_FETCH,
+  SET_USER,
 } from './actionTypes';
 
 export const getContent = () => {
