@@ -4,7 +4,7 @@ import {
   GET_FILM_ID,
   RECEIVE_DATA_FROM_FETCH,
   GET_VIDEO,
-  START_VIDEO
+  START_VIDEO,
 } from './actionTypes';
 
 export const getContent = () => {
@@ -22,9 +22,20 @@ export const getContent = () => {
   };
 };
 
-
-
-
+export const saveComments = (obj) => {
+  return async (dispatch) => {
+    const response = await fetch(
+      'https://elbrus-shows.firebaseio.com/films.json',
+      {
+        method: 'POST',
+        body: JSON.stringify(obj),
+        headers: { 'Content-type': 'application/json' },
+      }
+    );
+    const res = await response.json();
+    console.log(res);
+  };
+};
 
 export const startFetch = (id) => {
   return { type: START_FETCH, id };
@@ -38,11 +49,9 @@ export const receiveDataFromFetch = (payload) => {
   };
 };
 
-
 export const startVideoFetch = (id) => {
   return { type: START_VIDEO, id };
-
-}
+};
 
 export const getVideo = (payload) => {
   return {

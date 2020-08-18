@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import {
   Button,
   Modal,
@@ -10,33 +12,37 @@ import {
   Form,
   FormGroup,
 } from 'reactstrap';
+import { useInputs } from '../../../Input/Input';
+import { useParams } from 'react-router-dom';
 
 const ModalComments = (props) => {
+  const [postvalue, setPostValue] = useInputs({ post: '' });
   const [modal, setModal] = useState(false);
   const [unmountOnClose, setUnmountOnClose] = useState(true);
+  const dispatch = useDispatch();
+  const filmId = useParams().id;
+
+
+
 
   const toggle = () => setModal(!modal);
-  const changeUnmountOnClose = (e) => {
-    let value = e.target.value;
-    setUnmountOnClose(JSON.parse(value));
-  };
+ 
 
   return (
     <div>
       <Form inline onSubmit={(e) => e.preventDefault()}>
-        {/* <FormGroup>
-                    <Label for="unmountOnClose">UnmountOnClose value</Label>{' '}
-                    <Input type="select" name="unmountOnClose" id="unmountOnClose" onChange={changeUnmountOnClose}>
-                        <option value="true">true</option>
-                        <option value="false">false</option>
-                    </Input>
-                </FormGroup> */}{' '}
         <Button onClick={toggle}>Оставить отзыв</Button>
       </Form>
       <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
-          <Input type="textarea" placeholder="Оставьте свой отзыв" rows={5} />
+          <Input
+            type="textarea"
+            name="post"
+            placeholder="Оставьте свой отзыв"
+            rows={5}
+            onChange={setPostValue}
+          />
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>
