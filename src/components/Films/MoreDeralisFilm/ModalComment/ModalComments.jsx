@@ -23,24 +23,21 @@ import { useParams } from 'react-router-dom';
 import { saveComments } from '../../../../redux/action';
 
 const ModalComments = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen1, setDropdownOpen1] = useState(false);
+  const [dropdownOpen2, setDropdownOpen2] = useState(false);
+  const [dropdownOpen3, setDropdownOpen3] = useState(false);
+
   const [modal, setModal] = useState(false);
 
   const [postvalue, setPostValue] = useInputs({ post: '' });
-  const [rating, setRating] = useInputs({ scenario: 0, actors: 0, general: 0 });
+  const [rating, setRating] = useInputs({ scenario: '', actors: '', general: '' });
 
   const dispatch = useDispatch();
   const filmId = useParams().id;
-  const user = useSelector((state) => state.user);
-  console.log(rating);
 
-  const dropDownGetRating = (e) => {
-    const value = e.target.value;
-    const fieldName = e.target.name;
-    console.log(value, fieldName);
-  };
-
-  const toggleDropDown = (e) => setDropdownOpen((prevState) => !prevState);
+  const toggleDropDown = (e) => setDropdownOpen1((prevState) => !prevState);
+  const toggleDropDown2 = (e) => setDropdownOpen2((prevState) => !prevState);
+  const toggleDropDown3 = (e) => setDropdownOpen3((prevState) => !prevState);
 
   const toggle = () => setModal(!modal);
 
@@ -49,51 +46,79 @@ const ModalComments = (props) => {
       <Form inline onSubmit={(e) => e.preventDefault()}>
         <Button onClick={toggle}>Оставить отзыв</Button>
       </Form>
-      <Modal isOpen={modal} toggle={toggle}>
+      <Modal isOpen={modal} toggle={toggle} className="modal-lg shadow-lg p-3 mb-5 bg-white rounded">
         <ModalHeader toggle={toggle} style={{ color: 'black' }}>
           Modal title
         </ModalHeader>
         <ModalBody>
-          <Row onClick={(e) => e.target}>
+          <Row>
             <Dropdown
-              multiple="multiple"
-              isOpen={dropdownOpen}
+              isOpen={dropdownOpen1}
               toggle={toggleDropDown}
+              name="scenario"
             >
               <DropdownToggle caret>Сценарий</DropdownToggle>
               <DropdownMenu
                 name="scenario"
-                onClick={(e) => console.log(e.target)}
+           
               >
-                <DropdownItem onClick={(e) => console.log(e.target)}>
+                <DropdownItem onClick={setRating} value="5" name="scenario">
                   5
                 </DropdownItem>
-                <DropdownItem onClick={(e) => dropDownGetRating(e)}>
+                <DropdownItem onClick={setRating} value="4" name="scenario">
                   4
                 </DropdownItem>
-                <DropdownItem>3</DropdownItem>
-                <DropdownItem>2</DropdownItem>
-                <DropdownItem>1</DropdownItem>
+                <DropdownItem onClick={setRating} value="3" name="scenario">
+                  3
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="2" name="scenario">
+                  2
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="1" name="scenario">
+                  1
+                </DropdownItem>
               </DropdownMenu>
-            </Dropdown>
-            <Dropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
+            </Dropdown> 
+
+            <Dropdown isOpen={dropdownOpen2} toggle={toggleDropDown2}>
               <DropdownToggle caret>Актерская игра</DropdownToggle>
               <DropdownMenu name="actors" onClick={setRating}>
-                <DropdownItem>5</DropdownItem>
-                <DropdownItem>4</DropdownItem>
-                <DropdownItem>3</DropdownItem>
-                <DropdownItem>2</DropdownItem>
-                <DropdownItem>1</DropdownItem>
+                <DropdownItem onClick={setRating} value="5" name="actors">
+                  5
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="4" name="actors">
+                  4
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="3" name="actors">
+                  3
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="2" name="actors">
+                  2
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="1" name="actors">
+                  1
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
-            <Dropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
+
+            <Dropdown isOpen={dropdownOpen3} toggle={toggleDropDown3}>
               <DropdownToggle caret>Впечатление</DropdownToggle>
               <DropdownMenu name="general" onClick={setRating}>
-                <DropdownItem>5</DropdownItem>
-                <DropdownItem>4</DropdownItem>
-                <DropdownItem>3</DropdownItem>
-                <DropdownItem>2</DropdownItem>
-                <DropdownItem>1</DropdownItem>
+                <DropdownItem onClick={setRating} value="5" name="general">
+                  5
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="4" name="general">
+                  4
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="3" name="general">
+                  3
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="2" name="general">
+                  2
+                </DropdownItem>
+                <DropdownItem onClick={setRating} value="1" name="general">
+                  1
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </Row>
@@ -110,7 +135,7 @@ const ModalComments = (props) => {
             color="primary"
             onClick={() => {
               toggle();
-              dispatch(saveComments({ ...postvalue, filmId }));
+              dispatch(saveComments({  rating, ...postvalue, filmId, }));
             }}
           >
             Сохранить
