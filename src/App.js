@@ -10,7 +10,7 @@ import './public/app.css';
 import FilmList from './components/Films/FilmList';
 import UserRegister from './components/User/UserRegister';
 import Login from './components/Login/Login.jsx';
-import MoreDetails from './components/Films/MoreDetails';
+import MoreDetails from './components/Films/MoreDeralisFilm/MoreDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
 
