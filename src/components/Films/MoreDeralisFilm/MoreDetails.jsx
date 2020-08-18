@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Table } from 'reactstrap';
@@ -8,6 +8,7 @@ import Comments from './Comments/Comments';
 
 const MoreDetails = () => {
   // const [stateFilms, setState] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -129,9 +130,7 @@ const MoreDetails = () => {
           <Row className={'pt-5'}>
             <ModalComments />
           </Row>
-          <Row className={'pt-5'}>
-            <Comments />
-          </Row>
+      
         </>
       )}
     </Container>

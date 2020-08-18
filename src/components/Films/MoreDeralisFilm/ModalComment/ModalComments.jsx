@@ -110,7 +110,7 @@ const ModalComments = (props) => {
             color="primary"
             onClick={() => {
               toggle();
-              dispatch(saveComments({ postvalue, filmId }));
+              dispatch(saveComments({ ...postvalue, filmId }));
             }}
           >
             Сохранить
