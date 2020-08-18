@@ -19,7 +19,7 @@ export default function FilmCard(props) {
   return (
     <Col sm="4" lg="3" xs="12">
       <Card style={{ backgroundColor: '#000' }}>
-        <Link to={`/films/${film.nameRu}`}>
+        <Link to={`/films/${film.filmId}`}>
           <CardImg
             src={`${film.posterUrl}`}
             alt="Card image cap"
