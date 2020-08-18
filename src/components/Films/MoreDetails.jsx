@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContent, startFetch } from '../../redux/action';
+import { getContent, startFetch, startVideoFetch } from '../../redux/action';
 import { Container, Row, Col } from 'reactstrap';
 
 const MoreDetails = () => {
@@ -9,7 +9,8 @@ const MoreDetails = () => {
 
   const dispatch = useDispatch();
   const moreDetalisFilm = useSelector((state) => state.moreDetalisFilm);
-
+  const video = useSelector((state) => state.videoUrl);
+console.log(video)
   const filmList = useSelector((state) => state.films);
   const filmOne = useParams().id;
 
@@ -18,13 +19,18 @@ const MoreDetails = () => {
   useEffect(() => {
     dispatch(startFetch(film.filmId));
   }, [dispatch]);
- 
 
-  console.log(moreDetalisFilm);
+  useEffect(() => {
+    dispatch(startVideoFetch(film.filmId));
+  }, [dispatch]);
+
+const embed = video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, 'embed/')
+
+  console.log(embed);
 
   return (
     <Container>
-      {film && (
+      {moreDetalisFilm && (
         <>
           <Row>
             <Col>
@@ -74,32 +80,38 @@ const MoreDetails = () => {
                   </tr>
                   <tr>
                     <th scope="row">Рейтинг фильма</th>
-                    <td style={{ color: ' #d94f5c' }}>{film.rating}</td>
+                    <td>
+                      <span style={{ color: ' #d94f5c' }}>{film.rating}</span>{' '}
+                      <span style={{ color: ' #a5a5a5', fontSize: '0.8em' }}>
+                        ({film.ratingVoteCount})
+                      </span>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">Возраст / Рейтинг MPAA</th>
-                      <td>{moreDetalisFilm.ratingAgeLimits} / {moreDetalisFilm.ratingMpaa}</td>
+                    <td>
+                      {moreDetalisFilm.ratingAgeLimits} /{' '}
+                      {moreDetalisFilm.ratingMpaa}
+                    </td>
                   </tr>
                   <tr>
-                    <th scope="row">Количество голосов</th>
-                    <td>{film.ratingVoteCount}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Количество голосов</th>
-                    <td>{film.ratingVoteCount}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Количество голосов</th>
-                    <td>{film.ratingVoteCount}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Количество голосов</th>
-                    <td>{film.ratingVoteCount}</td>
+                    <th scope="row">Слоган</th>
+                    <td>"{moreDetalisFilm.slogan}"</td>
                   </tr>
                 </tbody>
               </table>
             </Col>
           </Row>
+          <Row p="7">
+            <Col sm="6" lg="8" className={'mt-5'}>
+              {moreDetalisFilm.description}
+            </Col>
+          </Row>
+          {/* {video.trailers[0].url && <video style={{width: '100px'}} autoplay="autoplay"src={video.trailers[0].url}/>} */}
+          {video.trailers[0] && <div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src={embed} allowfullscreen></iframe>
+</div>}
+
         </>
       )}
     </Container>

@@ -2,6 +2,7 @@ import {
   GET_FILMLIST,
   RECEIVE_DATA_FROM_FETCH,
   GET_FILM_ID,
+  GET_VIDEO,
 } from './actionTypes';
 
 export const reducer = (state, action) => {
@@ -17,10 +18,12 @@ export const reducer = (state, action) => {
         ...state,
         moreDetalisFilm: action.payload.data,
       };
-    case GET_FILM_ID:
+
+
+    case GET_VIDEO:
       return {
         ...state,
-        moreDetalisFilm: action.payload,
+        videoUrl: action.payload,
       };
     default:
       return state;

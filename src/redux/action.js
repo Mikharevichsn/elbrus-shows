@@ -4,6 +4,8 @@ import {
   GET_FILM_ID,
   RECEIVE_DATA_FROM_FETCH,
   SET_USER,
+  GET_VIDEO,
+  START_VIDEO,
 } from './actionTypes';
 
 export const getContent = () => {
@@ -21,12 +23,9 @@ export const getContent = () => {
   };
 };
 
-export const getMoreDetalis = (payload) => {
-  return {
-    type: GET_FILM_ID,
-    payload,
-  };
-};
+
+
+
 
 export const startFetch = (id) => {
   return { type: START_FETCH, id };
@@ -36,6 +35,19 @@ export const receiveDataFromFetch = (payload) => {
   console.log(payload);
   return {
     type: RECEIVE_DATA_FROM_FETCH,
+    payload,
+  };
+};
+
+
+export const startVideoFetch = (id) => {
+  return { type: START_VIDEO, id };
+
+}
+
+export const getVideo = (payload) => {
+  return {
+    type: GET_VIDEO,
     payload,
   };
 };
