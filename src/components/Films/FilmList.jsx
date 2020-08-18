@@ -7,34 +7,44 @@ export default function FilmList() {
   const filmList = useSelector((state) => state.films); //Ссылка на хранилище
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [filmsOnPage, setFilmsOnPage] = useState(20);
+  const [filmsOnPage] = useState(20);
   const [genre, setGenre] = useState('all');
+  const [country, setCountry] = useState('all');
   const [filteredFilms, setFilteredFilms] = useState([]);
   const countPages = Math.ceil(filteredFilms.length / filmsOnPage);
   const pages = new Array(countPages).fill('');
-  console.log('pages: ', pages);
 
   useEffect(() => {
     setFilteredFilms(() => {
-      if (genre !== 'all') {
+      if (genre !== 'all' && country !== 'all') {
+        return filmList
+          .filter((film) => film.genres.some((el) => el.genre === genre))
+          .filter((film) =>
+            film.countries.some((el) => el.country === country)
+          );
+      } else if (genre !== 'all') {
         return filmList.filter((film) =>
-          film.genres.some((el) => el.genre == genre)
+          film.genres.some((el) => el.genre === genre)
+        );
+      } else if (country !== 'all') {
+        return filmList.filter((film) =>
+          film.countries.some((el) => el.country === country)
         );
       } else {
         return [...filmList];
       }
     });
-  }, [filmList, genre]);
+  }, [filmList, genre, country]);
 
   return (
     <>
-    {/* Сортировка */}
+      {/* Фильтр */}
+      <p1>Фильтр по жанру: </p1>
       <select
         name=""
         id=""
         onChange={(event) => {
-          console.log(event.target.value);
-          setCurrentPage(0)
+          setCurrentPage(0);
           setGenre(event.target.value);
         }}
       >
@@ -61,22 +71,30 @@ export default function FilmList() {
       </select>
 
       {/* Фильтр */}
+      <p1>Фильтр по странам: </p1>
       <select
         name=""
         id=""
         onChange={(event) => {
-          console.log(event.target.value);
-          setCurrentPage(0)
-          setGenre(event.target.value);
+          setCurrentPage(0);
+          setCountry(event.target.value);
         }}
       >
         <option value="all" selected>
           Не выбран
         </option>
-        <option value="мультфильм">Мультфильм</option>
-        <option value="драма">драма</option>
-        <option value="комедия">комедия</option>
+        <option value="Россия">Россия</option>
+        <option value="СССР">СССР</option>
+        <option value="США">США</option>
+        <option value="Франция">Франция</option>
+        <option value="Италия">Италия</option>
+        <option value="Испания">Испания</option>
+        <option value="Великобритания">Великобритания</option>
+        <option value="Германия">Германия</option>
+        <option value="Корея Южная">Корея Южная</option>
+        <option value="Япония">Япония</option>
       </select>
+
       <div className="filmList">
         <Row>
           {filmList &&
@@ -90,35 +108,80 @@ export default function FilmList() {
             })}
         </Row>
       </div>
+
       <Pagination aria-label="Page navigation example">
-        <PaginationItem>
-          <PaginationLink first href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink previous href="#" />
-        </PaginationItem>
+        {currentPage > 0 && (
+          <PaginationItem>
+            {/* Переход на первую страницу */}
+            <PaginationLink
+              first
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(0);
+              }}
+            />
+          </PaginationItem>
+        )}
+
+        {currentPage > 0 && (
+          <PaginationItem>
+            {/* Переход на страницу назад */}
+            <PaginationLink
+              previous
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(currentPage - 1);
+              }}
+            />
+          </PaginationItem>
+        )}
 
         {pages.map((_, index) => {
           return (
-            <PaginationItem>
-              <PaginationLink href="#" onClick={() => setCurrentPage(index)}>
+            <PaginationItem active={currentPage === index}>
+              {/* Переход на выбранную страницу */}
+              <PaginationLink
+                href="#"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setCurrentPage(index);
+                }}
+              >
                 {index + 1}
               </PaginationLink>
             </PaginationItem>
           );
         })}
-        <PaginationItem>
-          <PaginationLink
-            next
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-            }}
-          />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink last href="#" />
-        </PaginationItem>
+
+        {currentPage !== pages.length - 1 && (
+          <PaginationItem>
+            {/* Переход на страницу вперед */}
+            <PaginationLink
+              next
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(currentPage + 1);
+              }}
+            />
+          </PaginationItem>
+        )}
+
+        {currentPage !== pages.length - 1 && (
+          <PaginationItem>
+            <PaginationLink
+              // {/* Переход на последнюю страницу */}
+              last
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setCurrentPage(pages.length - 1);
+              }}
+            />
+          </PaginationItem>
+        )}
       </Pagination>
     </>
   );
