@@ -16,19 +16,17 @@ export default function FilmList() {
 
   useEffect(() => {
     setFilteredFilms(() => {
-      if (genre !== 'all') {
+      if (genre !== 'all' && country !== 'all') {
+        return filmList
+          .filter((film) => film.genres.some((el) => el.genre === genre))
+          .filter((film) =>
+            film.countries.some((el) => el.country === country)
+          );
+      } else if (genre !== 'all') {
         return filmList.filter((film) =>
           film.genres.some((el) => el.genre === genre)
         );
-      } else {
-        return [...filmList];
-      }
-    });
-  }, [filmList, genre]);
-
-  useEffect(() => {
-    setFilteredFilms(() => {
-      if (country !== 'all') {
+      } else if (country !== 'all') {
         return filmList.filter((film) =>
           film.countries.some((el) => el.country === country)
         );
@@ -36,12 +34,12 @@ export default function FilmList() {
         return [...filmList];
       }
     });
-  }, [filmList, country]);
+  }, [filmList, genre, country]);
 
   return (
     <>
-      <p1>Фильтр по жанру: </p1>
       {/* Фильтр */}
+      <p1>Фильтр по жанру: </p1>
       <select
         name=""
         id=""
@@ -72,8 +70,8 @@ export default function FilmList() {
         <option value="семейный">семейный</option>
       </select>
 
-      <p1>Фильтр по странам: </p1>
       {/* Фильтр */}
+      <p1>Фильтр по странам: </p1>
       <select
         name=""
         id=""
@@ -95,7 +93,6 @@ export default function FilmList() {
         <option value="Германия">Германия</option>
         <option value="Корея Южная">Корея Южная</option>
         <option value="Япония">Япония</option>
-
       </select>
 
       <div className="filmList">
