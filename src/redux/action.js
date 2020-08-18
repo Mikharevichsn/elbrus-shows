@@ -43,14 +43,12 @@ export const getComments = (obj) => {
     const response = await fetch(
       'https://elbrus-shows.firebaseio.com/comments.json',
       {
-       
-       
         headers: { 'Content-type': 'application/json' },
       }
     );
     const res = await response.json();
-    console.log(res)
-   return res
+ console.log(res)
+    return res;
   };
 };
 
