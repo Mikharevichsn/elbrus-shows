@@ -42,6 +42,8 @@ store.subscribe(() => {
   saveState({
     films: store.getState().films,
     moreDetalisFilm: store.getState().moreDetalisFilm,
+    videoUrl: store.getState().videoUrl,
+
   });
 });
 
