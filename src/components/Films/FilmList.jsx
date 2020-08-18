@@ -7,19 +7,18 @@ export default function FilmList() {
   const filmList = useSelector((state) => state.films); //Ссылка на хранилище
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [filmsOnPage, setFilmsOnPage] = useState(20);
+  const [filmsOnPage] = useState(20);
   const [genre, setGenre] = useState('all');
-  const [sort, setSort] = useState('all');
+  const [country, setCountry] = useState('all');
   const [filteredFilms, setFilteredFilms] = useState([]);
-  const [sortedFilms, setSortedFilms] = useState([]);
   const countPages = Math.ceil(filteredFilms.length / filmsOnPage);
   const pages = new Array(countPages).fill('');
-  
+
   useEffect(() => {
     setFilteredFilms(() => {
       if (genre !== 'all') {
         return filmList.filter((film) =>
-          film.genres.some((el) => el.genre == genre)
+          film.genres.some((el) => el.genre === genre)
         );
       } else {
         return [...filmList];
@@ -27,27 +26,21 @@ export default function FilmList() {
     });
   }, [filmList, genre]);
 
-
+  useEffect(() => {
+    setFilteredFilms(() => {
+      if (country !== 'all') {
+        return filmList.filter((film) =>
+          film.countries.some((el) => el.country === country)
+        );
+      } else {
+        return [...filmList];
+      }
+    });
+  }, [filmList, country]);
 
   return (
     <>
-      {/* Сортировка */}
-      <select
-        name=""
-        id=""
-        onChange={(event) => {
-          console.log(event.target.value);
-          setCurrentPage(0);
-          setSort(event.target.value);
-        }}
-      >
-        <option value="all" selected>
-          Не выбран
-        </option>
-        <option value="rateIncrease">По возрастанию рейтинга</option>
-        
-      </select>
-
+      <p1>Фильтр по жанру: </p1>
       {/* Фильтр */}
       <select
         name=""
@@ -78,6 +71,33 @@ export default function FilmList() {
         <option value="музыка">музыка</option>
         <option value="семейный">семейный</option>
       </select>
+
+      <p1>Фильтр по странам: </p1>
+      {/* Фильтр */}
+      <select
+        name=""
+        id=""
+        onChange={(event) => {
+          setCurrentPage(0);
+          setCountry(event.target.value);
+        }}
+      >
+        <option value="all" selected>
+          Не выбран
+        </option>
+        <option value="Россия">Россия</option>
+        <option value="СССР">СССР</option>
+        <option value="США">США</option>
+        <option value="Франция">Франция</option>
+        <option value="Италия">Италия</option>
+        <option value="Испания">Испания</option>
+        <option value="Великобритания">Великобритания</option>
+        <option value="Германия">Германия</option>
+        <option value="Корея Южная">Корея Южная</option>
+        <option value="Япония">Япония</option>
+
+      </select>
+
       <div className="filmList">
         <Row>
           {filmList &&
@@ -137,8 +157,8 @@ export default function FilmList() {
             </PaginationItem>
           );
         })}
-        
-        {currentPage != pages.length - 1 && (
+
+        {currentPage !== pages.length - 1 && (
           <PaginationItem>
             {/* Переход на страницу вперед */}
             <PaginationLink
@@ -152,7 +172,7 @@ export default function FilmList() {
           </PaginationItem>
         )}
 
-        {currentPage != pages.length - 1 && (
+        {currentPage !== pages.length - 1 && (
           <PaginationItem>
             <PaginationLink
               // {/* Переход на последнюю страницу */}
