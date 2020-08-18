@@ -17,7 +17,7 @@ export default function UserRegister() {
             e.preventDefault();
             const API_KEY = 'AIzaSyATSj6YwarLnzR7NFPKLyRV_WfE_kkGDWM';
             const response = await fetch(
-              `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyATSj6YwarLnzR7NFPKLyRV_WfE_kkGDWM`,
+              `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
               {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
@@ -25,6 +25,7 @@ export default function UserRegister() {
                   email: state.email,
                   password: state.password,
                   firstName: state.userName,
+                  displayName: state.userName,
                   returnSecureToken: true,
                 }),
               }
@@ -33,6 +34,26 @@ export default function UserRegister() {
             console.log(registerResult);
             // document.cookie = `user_idTocken=${registerResult.idToken}; secure`;
             document.cookie = `user_idToken=${registerResult.idToken}; max-age=${registerResult.expiresIn}`;
+
+            const user = {
+              localId: registerResult.localId,
+              displayName: registerResult.displayName,
+              wishList: [],
+              favoriteList: [],
+            };
+
+            const userResponse = await fetch(
+              'https://elbrus-shows.firebaseio.com/users.json', //добавление зарегистрировавшегося пользователя в коллекцию users
+              {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(user),
+              }
+            );
+            const userResult = await userResponse.json();
+            console.log('userResult>>', userResult);
+            document.cookie = `user_auth_id=${registerResult.localId}; max-age=${registerResult.expiresIn}`;
+            document.cookie = `user_id=${userResult.name}; max-age=${registerResult.expiresIn}`;
           }}
         >
           <input
