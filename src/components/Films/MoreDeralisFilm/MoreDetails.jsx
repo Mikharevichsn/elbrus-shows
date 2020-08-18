@@ -10,14 +10,12 @@ const MoreDetails = () => {
   // const [stateFilms, setState] = useState([]);
 
   const dispatch = useDispatch();
-  
+
   const moreDetalisFilm = useSelector((state) => state.moreDetalisFilm);
   const video = useSelector((state) => state.videoUrl);
   const filmList = useSelector((state) => state.films);
   const filmOne = useParams().id;
-filmList.map(el => console.log(el.filmId))
   const film = filmList.find((el) => el.filmId === Number(filmOne));
-
 
   useEffect(() => {
     dispatch(startFetch(film.filmId));
@@ -46,7 +44,10 @@ filmList.map(el => console.log(el.filmId))
               <h1>{film.nameRu} </h1>
               <p className="font-weight-light">{film.nameEn}</p>
               <Table
-              striped bordered hover variant="dark"
+                striped
+                bordered
+                hover
+                variant="dark"
                 className="table table-striped table-dark "
                 defaultActiveKey="profile"
               >
@@ -123,13 +124,14 @@ filmList.map(el => console.log(el.filmId))
             </Col>
           </Row>
           <Row className={'pt-5'}>
-            <Comments/>
-            </Row>
-            <Row className={'pt-5'}>
-
+            <Comments />
+          </Row>
+          <Row className={'pt-5'}>
             <ModalComments />
-            </Row>
-        
+          </Row>
+          <Row className={'pt-5'}>
+            <Comments />
+          </Row>
         </>
       )}
     </Container>
