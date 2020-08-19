@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getComments } from '../../../../redux/action';
+import { setComments } from '../../../../redux/action';
 import { useParams } from 'react-router-dom';
 import {
   Row,
@@ -15,25 +15,37 @@ import writer from '../../../../public/img/writer.png';
 import popcorn from '../../../../public/img/popcorn.png';
 
 const Comments = () => {
-  const [comments, setComments] = useState([]);
+  const [commentsState, setCommentsState] = useState([]);
+  const comments = useSelector((state) => state.comments);
+
   const dispatch = useDispatch();
   const filmIdParams = useParams().id;
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const obj = await dispatch(getComments());
+  //     console.log(obj);
+  //     for (const key in obj) {
+  //       if (obj.hasOwnProperty(key)) {
+  //         const element = obj[key];
+  //         if (element.filmId === filmIdParams) {
+  //           setCommentsState((state) => [...state, element]);
+  //           console.log(commentsState)
+
+  //         }
+  //       }
+  //     }
+
+  //   })();
+  // }, [dispatch, filmIdParams]);
+
   useEffect(() => {
-    (async () => {
-      const obj = await dispatch(getComments());
-      console.log(obj);
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          const element = obj[key];
-          if (element.filmId === filmIdParams) {
-            setComments((state) => [...state, element]);
-          }
-        }
-      }
-    })();
+    dispatch(setComments(filmIdParams));
   }, [dispatch, filmIdParams]);
+
   console.log(comments);
-  comments.map((el) => el.rating && console.log(el.rating.scenario === ''));
+  console.log(commentsState);
+  comments.map((el) => el.rating && console.log(el.rating.scenario));
 
   return (
     <>
@@ -43,7 +55,6 @@ const Comments = () => {
         </Col>
       </Row>
 
-      <br />
       {comments &&
         comments.map((el) => (
           <>
@@ -53,7 +64,7 @@ const Comments = () => {
               <ListGroupItemText>{el.post}</ListGroupItemText>
               <ListGroupItemText>
                 <img src={actor} alt="actor-icon" style={{ width: '10%' }} />{' '}
-                {el.rating.scenario && el.rating.scenario === ''
+                {el.rating && el.rating.scenario === ''
                   ? 'Не оценил'
                   : el.rating.scenario}
                 /5
@@ -64,7 +75,7 @@ const Comments = () => {
                 />{' '}
                 {el.rating && el.rating.actors === ''
                   ? 'Не оценил'
-                  : el.rating.actors}
+                  : `${el.rating.actors}`}
                 /5{' '}
                 <img src={popcorn} alt="writer-icon" style={{ width: '10%' }} />
                 :

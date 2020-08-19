@@ -44,6 +44,7 @@ store.subscribe(() => {
     moreDetalisFilm: store.getState().moreDetalisFilm,
     videoUrl: store.getState().videoUrl,
     user: store.getState().user,
+    comments: store.getState().comments
   });
 });
 

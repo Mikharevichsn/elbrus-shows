@@ -16,18 +16,21 @@ const MoreDetails = () => {
   const video = useSelector((state) => state.videoUrl);
   const filmList = useSelector((state) => state.films);
   const filmOne = useParams().id;
+  // const [stateBoolean, setStateBoolean] = useState(false)
   const film = filmList.find((el) => el.filmId === Number(filmOne));
 
   useEffect(() => {
     dispatch(startFetch(film.filmId));
-  }, [dispatch]);
-
+  }, [dispatch, film.filmId]);
+  
   useEffect(() => {
     dispatch(startVideoFetch(film.filmId));
-  }, [dispatch]);
+   
+    
+    console.log(video)
+  }, [ film.filmId, dispatch]);
 
-  const embed =
-    video.trailers && video.trailers[0].url.replace(/watch\?v=/g, 'embed/');
+console.log(video)
 
   return (
     <Container>
@@ -115,7 +118,7 @@ const MoreDetails = () => {
                 <iframe
                   title="trailer"
                   class="embed-responsive-item"
-                  src={embed}
+                  src={video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, 'embed/')}
                   allowfullscreen
                 ></iframe>
               </Col>

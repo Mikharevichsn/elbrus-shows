@@ -1,11 +1,12 @@
 import {
   GET_FILMLIST,
   START_FETCH,
-  GET_FILM_ID,
   RECEIVE_DATA_FROM_FETCH,
   SET_USER,
   GET_VIDEO,
   START_VIDEO,
+  SET_COMMENTS,
+  SAVE_COMMENTS
 } from './actionTypes';
 
 export const getContent = () => {
@@ -23,9 +24,9 @@ export const getContent = () => {
   };
 };
 
-export const saveComments = (obj) => {
+export const saveComment = (obj) => {
   return async (dispatch) => {
-    const response = await fetch(
+    await fetch(
       'https://elbrus-shows.firebaseio.com/comments.json',
       {
         method: 'POST',
@@ -33,12 +34,15 @@ export const saveComments = (obj) => {
         headers: { 'Content-type': 'application/json' },
       }
     );
-    const res = await response.json();
-    console.log(res);
+    console.log(obj);
+    return dispatch({
+      type: SAVE_COMMENTS,
+      payload: [obj],
+    });
   };
 };
 
-export const getComments = (obj) => {
+export const setComments = (idFilm) => {
   return async (dispatch) => {
     const response = await fetch(
       'https://elbrus-shows.firebaseio.com/comments.json',
@@ -46,11 +50,27 @@ export const getComments = (obj) => {
         headers: { 'Content-type': 'application/json' },
       }
     );
+    const arr = [];
     const res = await response.json();
- console.log(res)
-    return res;
+    for (const key in res) {
+      if (res.hasOwnProperty(key)) {
+        const element = res[key];
+        if (element.filmId === idFilm) {
+          arr.push(element);
+        }
+      }
+    }
+    console.log(arr);
+    return dispatch({
+      type: SET_COMMENTS,
+      payload: arr,
+    });
   };
 };
+
+// export const setComments = (payload) => {
+//   return { type: SET_COMMENTS, payload };
+// };
 
 export const startFetch = (id) => {
   return { type: START_FETCH, id };

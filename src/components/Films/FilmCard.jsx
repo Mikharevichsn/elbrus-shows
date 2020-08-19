@@ -44,7 +44,7 @@ export default function FilmCard(props) {
             })}
           </CardSubtitle>
           <CardText></CardText>
-          <Link to={`/films/${film.nameRu}`}><Button>
+          <Link to={`/films/${film.filmId}`}><Button>
             <svg
               width="1em"
               height="1em"
