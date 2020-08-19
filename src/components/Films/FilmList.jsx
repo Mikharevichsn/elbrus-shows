@@ -16,10 +16,10 @@ export default function FilmList() {
   const pages = new Array(countPages).fill('');
 
   useEffect(() => {
-    if (filteredFilms.length === 0){
+    if (filteredFilms.length === 0) {
       console.log('По данным критериям поиска фильмов нет!');
     }
-  }, [filteredFilms])
+  }, [filteredFilms]);
 
   // Фильтры---------------------
   useEffect(() => {
@@ -118,6 +118,16 @@ export default function FilmList() {
       );
     }
   }, [sort, genre, country]);
+
+  const list = filmList &&
+    filteredFilms.map((film, i) => {
+      if (
+        i >= currentPage * filmsOnPage &&
+        i < currentPage * filmsOnPage + filmsOnPage
+      ) {
+        return <FilmCard film={film} />;
+      }
+    });
 
   return (
     <>
