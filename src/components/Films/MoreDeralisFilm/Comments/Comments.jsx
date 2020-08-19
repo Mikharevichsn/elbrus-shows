@@ -18,6 +18,7 @@ const Comments = () => {
   const [comments, setComments] = useState([]);
   const dispatch = useDispatch();
   const filmIdParams = useParams().id;
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     (async () => {
       const obj = await dispatch(getComments());
@@ -32,6 +33,7 @@ const Comments = () => {
       }
     })();
   }, [dispatch, filmIdParams]);
+
   console.log(comments);
   comments.map((el) => el.rating && console.log(el.rating.scenario === ''));
 
@@ -64,7 +66,7 @@ const Comments = () => {
                 />{' '}
                 {el.rating && el.rating.actors === ''
                   ? 'Не оценил'
-                  : el.rating.actors}
+                  : `${el.rating.actors}`}
                 /5{' '}
                 <img src={popcorn} alt="writer-icon" style={{ width: '10%' }} />
                 :

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './style.css';
 
 import {
@@ -30,7 +30,11 @@ const ModalComments = (props) => {
   const [modal, setModal] = useState(false);
 
   const [postvalue, setPostValue] = useInputs({ post: '' });
-  const [rating, setRating] = useInputs({ scenario: '', actors: '', general: '' });
+  const [rating, setRating] = useInputs({
+    scenario: '',
+    actors: '',
+    general: '',
+  });
 
   const dispatch = useDispatch();
   const filmId = useParams().id;
@@ -46,7 +50,11 @@ const ModalComments = (props) => {
       <Form inline onSubmit={(e) => e.preventDefault()}>
         <Button onClick={toggle}>Оставить отзыв</Button>
       </Form>
-      <Modal isOpen={modal} toggle={toggle} className="modal-lg shadow-lg p-3 mb-5 bg-white rounded">
+      <Modal
+        isOpen={modal}
+        toggle={toggle}
+        className="modal-lg shadow-lg p-3 mb-5 bg-white rounded"
+      >
         <ModalHeader toggle={toggle} style={{ color: 'black' }}>
           Modal title
         </ModalHeader>
@@ -58,10 +66,7 @@ const ModalComments = (props) => {
               name="scenario"
             >
               <DropdownToggle caret>Сценарий</DropdownToggle>
-              <DropdownMenu
-                name="scenario"
-           
-              >
+              <DropdownMenu name="scenario">
                 <DropdownItem onClick={setRating} value="5" name="scenario">
                   5
                 </DropdownItem>
@@ -78,7 +83,7 @@ const ModalComments = (props) => {
                   1
                 </DropdownItem>
               </DropdownMenu>
-            </Dropdown> 
+            </Dropdown>
 
             <Dropdown isOpen={dropdownOpen2} toggle={toggleDropDown2}>
               <DropdownToggle caret>Актерская игра</DropdownToggle>
@@ -135,7 +140,7 @@ const ModalComments = (props) => {
             color="primary"
             onClick={() => {
               toggle();
-              dispatch(saveComments({  rating, ...postvalue, filmId, }));
+              dispatch(saveComments({ rating, ...postvalue, filmId }));
             }}
           >
             Сохранить
