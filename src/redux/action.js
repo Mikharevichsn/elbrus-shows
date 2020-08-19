@@ -23,12 +23,40 @@ export const getContent = () => {
   };
 };
 
+export const saveComments = (obj) => {
+  return async (dispatch) => {
+    const response = await fetch(
+      'https://elbrus-shows.firebaseio.com/comments.json',
+      {
+        method: 'POST',
+        body: JSON.stringify(obj),
+        headers: { 'Content-type': 'application/json' },
+      }
+    );
+    const res = await response.json();
+    console.log(res);
+  };
+};
+
+export const getComments = (obj) => {
+  return async (dispatch) => {
+    const response = await fetch(
+      'https://elbrus-shows.firebaseio.com/comments.json',
+      {
+        headers: { 'Content-type': 'application/json' },
+      }
+    );
+    const res = await response.json();
+ console.log(res)
+    return res;
+  };
+};
+
 export const startFetch = (id) => {
   return { type: START_FETCH, id };
 };
 
 export const receiveDataFromFetch = (payload) => {
-  console.log(payload);
   return {
     type: RECEIVE_DATA_FROM_FETCH,
     payload,

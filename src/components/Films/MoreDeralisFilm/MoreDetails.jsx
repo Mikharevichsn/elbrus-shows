@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContent, startFetch, startVideoFetch } from '../../redux/action';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Table } from 'reactstrap';
+import { startFetch, startVideoFetch } from '../../../redux/action';
+import ModalComments from './ModalComment/ModalComments';
+import Comments from './Comments/Comments';
 
 const MoreDetails = () => {
   // const [stateFilms, setState] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   const dispatch = useDispatch();
+
   const moreDetalisFilm = useSelector((state) => state.moreDetalisFilm);
   const video = useSelector((state) => state.videoUrl);
-console.log(video)
   const filmList = useSelector((state) => state.films);
   const filmOne = useParams().id;
-
-  const film = filmList.find((el) => el.nameRu === filmOne);
+  const film = filmList.find((el) => el.filmId === Number(filmOne));
 
   useEffect(() => {
     dispatch(startFetch(film.filmId));
@@ -24,9 +26,8 @@ console.log(video)
     dispatch(startVideoFetch(film.filmId));
   }, [dispatch]);
 
-const embed = video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, 'embed/')
-
-  console.log(embed);
+  const embed =
+    video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, 'embed/');
 
   return (
     <Container>
@@ -35,7 +36,6 @@ const embed = video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, '
           <Row>
             <Col>
               <img
-                style={{ width: '70%' }}
                 src={`${film.posterUrlPreview}`}
                 alt={`Poster ${film.nameEn}`}
               />
@@ -44,10 +44,13 @@ const embed = video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, '
             <Col>
               <h1>{film.nameRu} </h1>
               <p className="font-weight-light">{film.nameEn}</p>
-              <table
+              <Table
+                striped
+                bordered
+                hover
+                variant="dark"
                 className="table table-striped table-dark "
                 defaultActiveKey="profile"
-                id="uncontrolled-tab-example"
               >
                 <tbody>
                   <tr>
@@ -99,19 +102,35 @@ const embed = video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, '
                     <td>"{moreDetalisFilm.slogan}"</td>
                   </tr>
                 </tbody>
-              </table>
+              </Table>
             </Col>
           </Row>
-          <Row p="7">
-            <Col sm="6" lg="8" className={'mt-5'}>
+          <Row className={'pt-5'}>
+            {video.trailers[0] && (
+              <Col
+                className="embed-responsive embed-responsive-16by9"
+                lg="6"
+                sm="8"
+              >
+                <iframe
+                  title="trailer"
+                  class="embed-responsive-item"
+                  src={embed}
+                  allowfullscreen
+                ></iframe>
+              </Col>
+            )}
+            <Col sm="6" lg="6">
               {moreDetalisFilm.description}
             </Col>
           </Row>
-          {/* {video.trailers[0].url && <video style={{width: '100px'}} autoplay="autoplay"src={video.trailers[0].url}/>} */}
-          {video.trailers[0] && <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src={embed} allowfullscreen></iframe>
-</div>}
-
+          <Row className={'pt-5'}>
+            <Comments />
+          </Row>
+          <Row className={'pt-5'}>
+            <ModalComments />
+          </Row>
+      
         </>
       )}
     </Container>
