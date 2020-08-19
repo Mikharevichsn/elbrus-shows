@@ -134,6 +134,7 @@ const ModalComments = (props) => {
             placeholder="Оставьте свой отзыв"
             rows={5}
             onChange={setPostValue}
+            style={{padding: '10px'}}
           />
         </ModalBody>
         <ModalFooter>
@@ -146,7 +147,7 @@ const ModalComments = (props) => {
           >
             Сохранить
           </Button>{' '}
-          <Button color="secondary" onClick={toggle}>
+          <Button color="secondary" onClick={toggle} >
             Отмена
           </Button>
         </ModalFooter>

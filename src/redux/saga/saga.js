@@ -18,7 +18,7 @@ const fetchFilmAPI = async (id = 354799) => {
   return result;
 };
 
-const fetchVideoApi = async (id = 354799) => {
+const fetchVideoApi = async (id) => {
   const _API_KEY = '66572abb-0a9a-4403-9927-417da01edf13';
   const response = await fetch(
     `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/videos`,
@@ -29,7 +29,6 @@ const fetchVideoApi = async (id = 354799) => {
     }
   );
   const result = await response.json();
-  console.log(result)
 
   return result;
 };
