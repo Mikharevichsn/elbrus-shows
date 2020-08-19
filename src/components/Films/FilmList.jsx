@@ -11,9 +11,17 @@ export default function FilmList() {
   const [genre, setGenre] = useState('all');
   const [country, setCountry] = useState('all');
   const [filteredFilms, setFilteredFilms] = useState([]);
+  const [sort, setSort] = useState('');
   const countPages = Math.ceil(filteredFilms.length / filmsOnPage);
   const pages = new Array(countPages).fill('');
 
+  useEffect(() => {
+    if (filteredFilms.length === 0){
+      console.log('По данным критериям поиска фильмов нет!');
+    }
+  }, [filteredFilms])
+
+  // Фильтры---------------------
   useEffect(() => {
     setFilteredFilms(() => {
       if (genre !== 'all' && country !== 'all') {
@@ -34,11 +42,86 @@ export default function FilmList() {
         return [...filmList];
       }
     });
-  }, [filmList, genre, country]);
+  }, [genre, country, filmList]);
+
+  // Сортировка-------------------
+  useEffect(() => {
+    if (sort === 'random') {
+      setFilteredFilms((state) => [...state].sort(() => Math.random() - 0.5));
+    } else if (sort === 'increaseRate') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          if (a.rating > b.rating) return 1;
+          if (a.rating < b.rating) return -1;
+          return 0;
+        })
+      );
+    } else if (sort === 'nothing') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          if (a.rating < b.rating) return 1;
+          if (a.rating > b.rating) return -1;
+          return 0;
+        })
+      );
+    } else if (sort === 'increaseYear') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          if (a.year > b.year) return 1;
+          if (a.year < b.year) return -1;
+          return 0;
+        })
+      );
+    } else if (sort === 'declineYear') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          if (a.year < b.year) return 1;
+          if (a.year > b.year) return -1;
+          return 0;
+        })
+      );
+    } else if (sort === 'increaseDuration') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          a.filmLength.replace(/:/, '.');
+          b.filmLength.replace(/:/, '.');
+          if (a.filmLength > b.filmLength) return 1;
+          if (a.filmLength < b.filmLength) return -1;
+          return 0;
+        })
+      );
+    } else if (sort === 'declineDuration') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          a.filmLength.replace(/:/, '.');
+          b.filmLength.replace(/:/, '.');
+          if (a.filmLength < b.filmLength) return 1;
+          if (a.filmLength > b.filmLength) return -1;
+          return 0;
+        })
+      );
+    } else if (sort === 'increaseVoteCount') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          if (a.ratingVoteCount > b.ratingVoteCount) return 1;
+          if (a.ratingVoteCount < b.ratingVoteCount) return -1;
+          return 0;
+        })
+      );
+    } else if (sort === 'declineVoteCount') {
+      setFilteredFilms((state) =>
+        [...state].sort((a, b) => {
+          if (a.ratingVoteCount < b.ratingVoteCount) return 1;
+          if (a.ratingVoteCount > b.ratingVoteCount) return -1;
+          return 0;
+        })
+      );
+    }
+  }, [sort, genre, country]);
 
   return (
     <>
-      {/* Фильтр */}
+      {/* Фильтр по жанрам*/}
       <p1>Фильтр по жанру: </p1>
       <select
         name=""
@@ -70,7 +153,7 @@ export default function FilmList() {
         <option value="семейный">семейный</option>
       </select>
 
-      {/* Фильтр */}
+      {/* Фильтр по странам*/}
       <p1>Фильтр по странам: </p1>
       <select
         name=""
@@ -80,9 +163,7 @@ export default function FilmList() {
           setCountry(event.target.value);
         }}
       >
-        <option value="all" selected>
-          Не выбран
-        </option>
+        <option value="all">Не выбран</option>
         <option value="Россия">Россия</option>
         <option value="СССР">СССР</option>
         <option value="США">США</option>
@@ -93,6 +174,35 @@ export default function FilmList() {
         <option value="Германия">Германия</option>
         <option value="Корея Южная">Корея Южная</option>
         <option value="Япония">Япония</option>
+      </select>
+
+      {/* Сортировка */}
+      <p1>Сортировка: </p1>
+      <select
+        name=""
+        id=""
+        onChange={(event) => {
+          setCurrentPage(0);
+          setSort(event.target.value);
+        }}
+      >
+        <option value="random">В случайном порядке</option>
+        <option value="nothing" selected>
+          По рейтингу (по уменьшению)
+        </option>
+        <option value="increaseRate">По рейтингу (по увеличению)</option>
+        <option value="increaseYear">По годам (20 век - н.в)</option>
+        <option value="declineYear">По годам (н.в - 20 век)</option>
+        <option value="increaseDuration">
+          По длительности (по увеличению)
+        </option>
+        <option value="declineDuration">По длительности (по уменьшению)</option>
+        <option value="increaseVoteCount">
+          По кол-ву голосов на КиноПоиске (по увеличению)
+        </option>
+        <option value="declineVoteCount">
+          По кол-ву голосов на КиноПоиске (по уменьшению)
+        </option>
       </select>
 
       <div className="filmList">
