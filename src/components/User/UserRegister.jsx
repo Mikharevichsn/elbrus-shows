@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/action';
 
 export default function UserRegister() {
   const [state, setState] = useState({
@@ -6,6 +8,8 @@ export default function UserRegister() {
     password: '',
     userName: '',
   });
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -41,6 +45,8 @@ export default function UserRegister() {
               wishList: [],
               favoriteList: [],
             };
+
+            dispatch(setUser(user));
 
             const userResponse = await fetch(
               'https://elbrus-shows.firebaseio.com/users.json', //добавление зарегистрировавшегося пользователя в коллекцию users

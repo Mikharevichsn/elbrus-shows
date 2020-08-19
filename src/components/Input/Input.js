@@ -31,4 +31,5 @@ export const submit = async (obj, method) => {
   console.log(result);
 
   document.cookie = `user_idToken=${result.idToken}; max-age=${result.expiresIn}`;
+  return result;
 };
