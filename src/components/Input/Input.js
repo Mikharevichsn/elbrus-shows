@@ -14,7 +14,6 @@ export const useInputs = (values) => {
 };
 
 export const submit = async (obj, method) => {
-  console.log(obj);
   const _API_KEY = 'AIzaSyATSj6YwarLnzR7NFPKLyRV_WfE_kkGDWM';
   const responce = await fetch(
     `https://identitytoolkit.googleapis.com/v1/accounts:${method}?key=${_API_KEY}`,
