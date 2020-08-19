@@ -29,6 +29,8 @@ const fetchVideoApi = async (id = 354799) => {
     }
   );
   const result = await response.json();
+  console.log(result)
+
   return result;
 };
 
