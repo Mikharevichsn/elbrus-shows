@@ -1,9 +1,10 @@
 import {
   GET_FILMLIST,
   RECEIVE_DATA_FROM_FETCH,
-  GET_FILM_ID,
   GET_VIDEO,
   SET_USER,
+  SET_COMMENTS,
+  SAVE_COMMENTS,
 } from './actionTypes';
 
 export const reducer = (state, action) => {
@@ -25,6 +26,18 @@ export const reducer = (state, action) => {
         ...state,
         videoUrl: action.payload,
       };
+    case SET_COMMENTS:
+      console.log(state);
+      return {
+        ...state,
+        comments: [ ...action.payload],
+      };
+      case SAVE_COMMENTS:
+        console.log(state);
+        return {
+          ...state,
+          comments: [...state.comments, ...action.payload],
+        };
 
     case SET_USER:
       return {
