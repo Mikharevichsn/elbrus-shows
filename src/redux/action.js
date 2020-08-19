@@ -26,7 +26,7 @@ export const getContent = () => {
 
 export const saveComment = (obj) => {
   return async (dispatch) => {
-    const response = await fetch(
+    await fetch(
       'https://elbrus-shows.firebaseio.com/comments.json',
       {
         method: 'POST',

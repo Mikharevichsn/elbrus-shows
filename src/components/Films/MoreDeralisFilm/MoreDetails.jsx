@@ -28,10 +28,9 @@ const MoreDetails = () => {
    
     
     console.log(video)
-  }, [dispatch, film.filmId]);
+  }, [ film.filmId, dispatch]);
 
-  let embed  = video.trailers && video.trailers[0].url.replace(/watch\?v=/g, 'embed/')
-
+console.log(video)
 
   return (
     <Container>
@@ -119,7 +118,7 @@ const MoreDetails = () => {
                 <iframe
                   title="trailer"
                   class="embed-responsive-item"
-                  src={embed}
+                  src={video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, 'embed/')}
                   allowfullscreen
                 ></iframe>
               </Col>
