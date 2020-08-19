@@ -2,7 +2,12 @@ export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
     if (serializedState === null) {
-      return { moreDetalisFilm: 'kmnknkkl', films: [1, 2, 3], videoUrl: {} };
+      return {
+        moreDetalisFilm: 'kmnknkkl',
+        films: [1, 2, 3],
+        videoUrl: {},
+        user: {},
+      };
     }
     return JSON.parse(serializedState);
   } catch (err) {

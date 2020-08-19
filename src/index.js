@@ -43,7 +43,7 @@ store.subscribe(() => {
     films: store.getState().films,
     moreDetalisFilm: store.getState().moreDetalisFilm,
     videoUrl: store.getState().videoUrl,
-
+    user: store.getState().user,
   });
 });
 

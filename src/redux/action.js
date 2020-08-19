@@ -23,10 +23,6 @@ export const getContent = () => {
   };
 };
 
-
-
-
-
 export const startFetch = (id) => {
   return { type: START_FETCH, id };
 };
@@ -39,15 +35,20 @@ export const receiveDataFromFetch = (payload) => {
   };
 };
 
-
 export const startVideoFetch = (id) => {
   return { type: START_VIDEO, id };
-
-}
+};
 
 export const getVideo = (payload) => {
   return {
     type: GET_VIDEO,
+    payload,
+  };
+};
+
+export const setUser = (payload) => {
+  return {
+    type: SET_USER,
     payload,
   };
 };
