@@ -27,7 +27,7 @@ const MoreDetails = () => {
   }, [dispatch]);
 
   const embed =
-    video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, 'embed/');
+    video.trailers && video.trailers[0].url.replace(/watch\?v=/g, 'embed/');
 
   return (
     <Container>
@@ -106,7 +106,7 @@ const MoreDetails = () => {
             </Col>
           </Row>
           <Row className={'pt-5'}>
-            {video.trailers[0] && (
+            {video.trailers && (
               <Col
                 className="embed-responsive embed-responsive-16by9"
                 lg="6"
