@@ -7,6 +7,7 @@ export const loadState = () => {
         films: [1, 2, 3],
         videoUrl: {},
         user: {},
+        comments: []
       };
     }
     return JSON.parse(serializedState);

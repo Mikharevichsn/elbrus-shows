@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './style.css';
 
 import {
@@ -20,7 +20,7 @@ import {
 } from 'reactstrap';
 import { useInputs } from '../../../Input/Input';
 import { useParams } from 'react-router-dom';
-import { saveComments } from '../../../../redux/action';
+import { saveComment } from '../../../../redux/action';
 
 const ModalComments = (props) => {
   const [dropdownOpen1, setDropdownOpen1] = useState(false);
@@ -44,7 +44,8 @@ const ModalComments = (props) => {
   const toggleDropDown3 = (e) => setDropdownOpen3((prevState) => !prevState);
 
   const toggle = () => setModal(!modal);
-
+  const user = useSelector((state) => state.user);
+  console.log(user)
   return (
     <div>
       <Form inline onSubmit={(e) => e.preventDefault()}>
@@ -140,7 +141,7 @@ const ModalComments = (props) => {
             color="primary"
             onClick={() => {
               toggle();
-              dispatch(saveComments({ rating, ...postvalue, filmId }));
+              dispatch(saveComment({ rating, ...postvalue, filmId }));
             }}
           >
             Сохранить

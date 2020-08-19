@@ -16,18 +16,23 @@ const MoreDetails = () => {
   const video = useSelector((state) => state.videoUrl);
   const filmList = useSelector((state) => state.films);
   const filmOne = useParams().id;
+  const [stateBoolean, setStateBoolean] = useState(false)
   const film = filmList.find((el) => el.filmId === Number(filmOne));
 
   useEffect(() => {
     dispatch(startFetch(film.filmId));
-  }, [dispatch]);
-
+  }, [dispatch, film.filmId]);
+  
   useEffect(() => {
     dispatch(startVideoFetch(film.filmId));
-  }, [dispatch]);
+    console.log()
+    setStateBoolean(true)
+    
+    console.log(video)
+  }, [dispatch, film.filmId]);
 
-  const embed =
-    video.trailers && video.trailers[0].url.replace(/watch\?v=/g, 'embed/');
+  let embed  = stateBoolean && video.trailers[0].url.replace(/watch\?v=/g, 'embed/')
+
 
   return (
     <Container>
