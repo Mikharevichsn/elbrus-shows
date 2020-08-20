@@ -23,7 +23,7 @@ export default function FilmCard(props) {
   const [liked, setLiked] = useState();
 
   useEffect(() => {
-    if (user && userObj.wishList.some(elem => elem.filmId === film.filmId)) {
+    if (user && userObj.wishList.some((elem) => elem.filmId === film.filmId)) {
       setBookmarked(true);
     } else {
       setBookmarked(false);
@@ -31,7 +31,10 @@ export default function FilmCard(props) {
   }, [userObj, film, user]);
 
   useEffect(() => {
-    if (user && userObj.favoriteList.some(elem => elem.filmId === film.filmId)) {
+    if (
+      user &&
+      userObj.favoriteList.some((elem) => elem.filmId === film.filmId)
+    ) {
       setLiked(true);
     } else {
       setLiked(false);
@@ -96,7 +99,7 @@ export default function FilmCard(props) {
                     } else {
                       dispatch(addBookmark(film));
                     }
-                  }
+                  } else alert('Авторизируйтесь или зарегистрируйтесь!');
                 }}
               >
                 {bookmarked ? (
@@ -144,7 +147,7 @@ export default function FilmCard(props) {
                     } else {
                       dispatch(addLike(film));
                     }
-                  }
+                  } else alert('Авторизируйтесь или зарегистрируйтесь!');
                 }}
               >
                 {liked ? (

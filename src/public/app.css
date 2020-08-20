@@ -60,7 +60,13 @@ pre {
   border-radius: 5px;
   box-shadow: rgb(129, 53, 216) 0 0 15px 5px;
 }
-
+.search-film{
+  padding: 3.5px;
+  background-color: rgb(123, 79, 173);
+  color: white;
+  border-radius: 5px;
+  min-width: 225px;
+}
 .film-select {
   padding: 5px;
   background-color: rgb(123, 79, 173);
@@ -88,6 +94,10 @@ ul.navbar {
 
 h2 {
   font-family: 'Montserrat', sans-serif !important;
+}
+.no-film-message{
+  text-align: center;
+  color: rgb(123, 79, 173)
 }
 
 /* .filmList {
@@ -126,4 +136,5 @@ h2 {
   .film-select.sort {
     max-width: 80vw;
   }
+  
 }
