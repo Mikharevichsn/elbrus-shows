@@ -15,6 +15,7 @@ import { getContent } from './redux/action';
 import { Main } from './components/Home/Main/Main.js';
 import UserInfo from './components/User/UserInfo';
 import AuthReg from './components/User/AuthReg/AuthReg';
+import MyCabinet from './components/Profile/MyCabinet/MyCabinet';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/films">
             <FilmList />
+          </Route>
+          <Route path="/MyCabinet">
+            <MyCabinet />
           </Route>
           <Route path="/registration">
             <UserRegister />

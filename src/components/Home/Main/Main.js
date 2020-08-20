@@ -16,6 +16,7 @@ export const Main = () => {
 
   const newsData = [];
 
+const loadNews = () => {
   for (let i = 0; i < news.length; i++) {
     newsData.push({
       index: i,
@@ -29,6 +30,10 @@ export const Main = () => {
       srcNews: news[i].url
     });
   }
+
+}
+
+loadNews()
 
   return (
     <>
