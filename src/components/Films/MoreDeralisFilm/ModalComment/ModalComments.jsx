@@ -48,7 +48,6 @@ const ModalComments = (props) => {
   const toggle = () => setModal(!modal);
   const user = useSelector((state) => state.user);
 
-
   const nameUser = user.displayName;
   return (
     <div>
@@ -63,18 +62,6 @@ const ModalComments = (props) => {
         <ModalHeader toggle={toggle} style={{ color: 'black' }}>
           {nameUser}
           <div>
-            <span className="icons">
-              <img
-                src={writerIcon}
-                alt="actor-icon"
-                style={{ width: '18%' }}
-                id="writerIcon"
-              />
-              <UncontrolledTooltip placement="top" target="writerIcon">
-                Актерская игра
-              </UncontrolledTooltip>
-              {rating.scenario}
-            </span>
             <span>
               <img
                 src={actorIcon}
@@ -83,9 +70,22 @@ const ModalComments = (props) => {
                 id="Actor"
               />
               <UncontrolledTooltip placement="top" target="Actor">
-                Сценарий
+                Актерская игра
               </UncontrolledTooltip>
               {rating.actors}
+            </span>
+
+            <span className="icons">
+              <img
+                src={writerIcon}
+                alt="actor-icon"
+                style={{ width: '18%' }}
+                id="writerIcon"
+              />
+              <UncontrolledTooltip placement="top" target="writerIcon">
+                Сценарий
+              </UncontrolledTooltip>
+              {rating.scenario}
             </span>
             <span>
               <img
@@ -94,8 +94,8 @@ const ModalComments = (props) => {
                 style={{ width: '18%' }}
                 id="popcornIcon"
               />
-              <UncontrolledTooltip placement="top" target="Actor">
-                Сценарий
+              <UncontrolledTooltip placement="top" target="popcornIcon">
+                Общее впечатление
               </UncontrolledTooltip>
               {rating.general}
             </span>
@@ -108,6 +108,27 @@ const ModalComments = (props) => {
               toggle={toggleDropDown}
               name="scenario"
             >
+              <Dropdown isOpen={dropdownOpen2} toggle={toggleDropDown2}>
+                <DropdownToggle caret>Актерская игра</DropdownToggle>
+                <DropdownMenu name="actors" onClick={setRating}>
+                  <DropdownItem onClick={setRating} value="5" name="actors">
+                    5
+                  </DropdownItem>
+                  <DropdownItem onClick={setRating} value="4" name="actors">
+                    4
+                  </DropdownItem>
+                  <DropdownItem onClick={setRating} value="3" name="actors">
+                    3
+                  </DropdownItem>
+                  <DropdownItem onClick={setRating} value="2" name="actors">
+                    2
+                  </DropdownItem>
+                  <DropdownItem onClick={setRating} value="1" name="actors">
+                    1
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+
               <DropdownToggle caret>Сценарий</DropdownToggle>
               <DropdownMenu name="scenario">
                 <DropdownItem onClick={setRating} value="5" name="scenario">
@@ -128,29 +149,8 @@ const ModalComments = (props) => {
               </DropdownMenu>
             </Dropdown>
 
-            <Dropdown isOpen={dropdownOpen2} toggle={toggleDropDown2}>
-              <DropdownToggle caret>Актерская игра</DropdownToggle>
-              <DropdownMenu name="actors" onClick={setRating}>
-                <DropdownItem onClick={setRating} value="5" name="actors">
-                  5
-                </DropdownItem>
-                <DropdownItem onClick={setRating} value="4" name="actors">
-                  4
-                </DropdownItem>
-                <DropdownItem onClick={setRating} value="3" name="actors">
-                  3
-                </DropdownItem>
-                <DropdownItem onClick={setRating} value="2" name="actors">
-                  2
-                </DropdownItem>
-                <DropdownItem onClick={setRating} value="1" name="actors">
-                  1
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-
             <Dropdown isOpen={dropdownOpen3} toggle={toggleDropDown3}>
-              <DropdownToggle caret>Впечатление</DropdownToggle>
+              <DropdownToggle caret>Общее Впечатление</DropdownToggle>
               <DropdownMenu name="general" onClick={setRating}>
                 <DropdownItem onClick={setRating} value="5" name="general">
                   5

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import Content from './components/Content/Content';
 import { Container } from 'reactstrap';
 
 import NavBar from './components/Navbar/Navbar';
@@ -13,7 +12,15 @@ import Login from './components/Login/Login.jsx';
 import MoreDetails from './components/Films/MoreDeralisFilm/MoreDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
+import {Main} from './components/Home/Main/Main.js'
 import UserInfo from './components/User/UserInfo';
+
+
+
+
+
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +48,7 @@ function App() {
             <UserRegister />
           </Route>
           <Route path="/">
-            <Content />
+            <Main />
           </Route>
         </Switch>
       </Container>

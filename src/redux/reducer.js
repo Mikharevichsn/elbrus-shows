@@ -5,6 +5,7 @@ import {
   SET_USER,
   SET_COMMENTS,
   SAVE_COMMENTS,
+  GET_NEWS,
 } from './actionTypes';
 
 export const reducer = (state, action) => {
@@ -42,6 +43,12 @@ export const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+
+      case GET_NEWS:
+        return {
+          ...state,
+          news:  action.payload
+        }
 
     default:
       return state;

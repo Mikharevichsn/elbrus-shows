@@ -7,6 +7,7 @@ import {
   START_VIDEO,
   SET_COMMENTS,
   SAVE_COMMENTS,
+  GET_NEWS
 } from './actionTypes';
 
 
@@ -82,9 +83,22 @@ export const setComments = (idFilm) => {
   };
 };
 
-// export const setComments = (payload) => {
-//   return { type: SET_COMMENTS, payload };
-// };
+
+
+
+
+export const getNews = () => {
+  return async (dispatch) => {
+    const response = await fetch('http://newsapi.org/v2/top-headlines?country=ru&category=entertainment&apiKey=686123decd0949248e97c5cdc966645b')
+    const result = await response.clone().json()
+    console.log(result.articles)
+  return dispatch({
+    type: GET_NEWS,
+    payload: result
+  })
+} 
+
+}
 
 export const startFetch = (id) => {
   return { type: START_FETCH, id };

@@ -7,3 +7,4 @@ export const GET_VIDEO = 'GET_VIDEO';
 export const START_VIDEO = 'START_VIDEO';
 export const SET_COMMENTS = 'SET_COMMENTS'
 export const SAVE_COMMENTS = 'SAVE_COMMENTS'
+export const GET_NEWS = 'GET_NEWS'
