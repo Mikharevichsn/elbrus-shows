@@ -33,7 +33,6 @@ function App() {
   return (
     <>
       <NavBar />
-      <UserInfo />
       <Container>
         <Switch>
           <Route path="/films/:id">
