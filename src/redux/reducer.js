@@ -5,6 +5,7 @@ import {
   SET_USER,
   SET_COMMENTS,
   SAVE_COMMENTS,
+  ADD_BOOKMARK,
 } from './actionTypes';
 
 export const reducer = (state, action) => {
@@ -42,6 +43,15 @@ export const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+    
+    case ADD_BOOKMARK:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          wishList: [...state.user.wishList, action.payload]
+        }
+      }
 
     default:
       return state;
