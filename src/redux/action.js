@@ -7,11 +7,18 @@ import {
   START_VIDEO,
   SET_COMMENTS,
   SAVE_COMMENTS,
+  GET_NEWS,
   ADD_BOOKMARK,
   DEL_BOOKMARK,
   ADD_LIKE,
   DEL_LIKE,
 } from './actionTypes';
+
+
+const checkRating = (actor, scenario, general) =>
+  Number(actor) + Number(scenario) + Number(general);
+const setColor = (num) =>
+  num >= 12 ? 'success' : num >= 9 ? 'warning' : 'danger';
 
 export const getContent = () => {
   return async (dispatch) => {
@@ -28,6 +35,7 @@ export const getContent = () => {
   };
 };
 
+
 export const saveComment = (obj) => {
   return async (dispatch) => {
     await fetch('https://elbrus-shows.firebaseio.com/comments.json', {
@@ -35,6 +43,11 @@ export const saveComment = (obj) => {
       body: JSON.stringify(obj),
       headers: { 'Content-type': 'application/json' },
     });
+
+    setColor(
+      checkRating(obj.rating.actor, obj.rating.scenario, obj.rating.general)
+    );
+
     return dispatch({
       type: SAVE_COMMENTS,
       payload: [obj],
@@ -44,15 +57,6 @@ export const saveComment = (obj) => {
 
 export const setComments = (idFilm) => {
   return async (dispatch) => {
-    const checkRating = (actor, scenario, general) => {
-      console.log(actor);
-      console.log(Number(actor) + Number(scenario) + Number(general));
-      return Number(actor) + Number(scenario) + Number(general);
-    };
-
-    const setColor = (num) =>
-      num >= 12 ? 'success' : num >= 9 ? 'warning' : 'danger';
-
     const response = await fetch(
       'https://elbrus-shows.firebaseio.com/comments.json',
       {
@@ -83,9 +87,22 @@ export const setComments = (idFilm) => {
   };
 };
 
-// export const setComments = (payload) => {
-//   return { type: SET_COMMENTS, payload };
-// };
+
+
+
+
+export const getNews = () => {
+  return async (dispatch) => {
+    const response = await fetch('http://newsapi.org/v2/top-headlines?country=ru&category=entertainment&apiKey=686123decd0949248e97c5cdc966645b')
+    const result = await response.clone().json()
+    console.log(result.articles)
+  return dispatch({
+    type: GET_NEWS,
+    payload: result
+  })
+} 
+
+}
 
 export const startFetch = (id) => {
   return { type: START_FETCH, id };

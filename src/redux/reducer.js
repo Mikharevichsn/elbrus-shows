@@ -5,6 +5,7 @@ import {
   SET_USER,
   SET_COMMENTS,
   SAVE_COMMENTS,
+  GET_NEWS,
   ADD_BOOKMARK,
   DEL_BOOKMARK,
   ADD_LIKE,
@@ -46,6 +47,12 @@ export const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+
+      case GET_NEWS:
+        return {
+          ...state,
+          news:  action.payload
+        }
 
     case ADD_BOOKMARK:
       return {

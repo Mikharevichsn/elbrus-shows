@@ -18,6 +18,7 @@ const MoreDetails = () => {
   const filmOne = useParams().id;
   // const [stateBoolean, setStateBoolean] = useState(false)
   const film = filmList.find((el) => el.filmId === Number(filmOne));
+const user = useSelector(state => state.user)
 
   useEffect(() => {
     dispatch(startFetch(film.filmId));
@@ -130,7 +131,7 @@ console.log(video)
             <Comments />
           </Row>
           <Row className={'pt-5'}>
-            <ModalComments />
+           { user.localId && <ModalComments />}
           </Row>
       
         </>
