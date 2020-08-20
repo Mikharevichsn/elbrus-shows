@@ -1,13 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import {} from 'reactstrap';
 import './style.scss';
-
-
-
-
-
-
 
 
 
@@ -44,7 +37,7 @@ export class Slide extends React.Component {
   }
   
   render() {
-    const { src, button, headline, index } = this.props.slide
+    const { src, button, headline, index, srcNews } = this.props.slide
     const current = this.props.current
     let classNames = 'slide'
     
@@ -71,7 +64,9 @@ export class Slide extends React.Component {
         
         <article className="slide__content">
           <h2 className="slide__headline">{headline}</h2>
-          <button className="slide__action btn">{button}</button>
+          <form action = {srcNews}>
+          <button className="slide__action btn" type='submit'>{button}</button>
+          </form>
         </article>
       </li>
     )
