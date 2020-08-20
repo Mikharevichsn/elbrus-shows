@@ -12,6 +12,56 @@ pre {
 
 .card {
   margin-bottom: 2em;
+  font-size: 1.2em;
+  line-height: 120%;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.film-list-country {
+  margin: 1em 0;
+}
+
+.film-card-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.film-card-buttons button {
+  margin-right: 5px;
+}
+
+.film-card-buttons button a {
+  color: #fff;
+}
+
+.rating-of-film {
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.container nav ul.pagination {
+  justify-content: center;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border: 1px solid #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: #fff 0 0 10px 1px;
+}
+
+.film-select {
+  padding: 5px;
+  font-size: larger;
 }
 
 /* .filmList {

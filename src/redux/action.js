@@ -8,6 +8,9 @@ import {
   SET_COMMENTS,
   SAVE_COMMENTS,
   ADD_BOOKMARK,
+  DEL_BOOKMARK,
+  ADD_LIKE,
+  DEL_LIKE,
 } from './actionTypes';
 
 export const getContent = () => {
@@ -117,5 +120,25 @@ export const addBookmark = (payload) => {
   return {
     type: ADD_BOOKMARK,
     payload,
-  }
-}
+  };
+};
+
+export const delBookmark = (payload) => {
+  return {
+    type: DEL_BOOKMARK,
+    payload,
+  };
+};
+
+export const addLike = (payload) => {
+  return {
+    type: ADD_LIKE,
+    payload,
+  };
+};
+export const delLike = (payload) => {
+  return {
+    type: DEL_LIKE,
+    payload,
+  };
+};

@@ -119,7 +119,8 @@ export default function FilmList() {
     }
   }, [sort, genre, country]);
 
-  const list = filmList &&
+  const list =
+    filmList &&
     filteredFilms.map((film, i) => {
       if (
         i >= currentPage * filmsOnPage &&
@@ -132,89 +133,98 @@ export default function FilmList() {
   return (
     <>
       {/* Фильтр по жанрам*/}
-      <p1>Фильтр по жанру: </p1>
-      <select
-        name=""
-        id=""
-        onChange={(event) => {
-          setCurrentPage(0);
-          setGenre(event.target.value);
-        }}
-      >
-        <option value="all" selected>
-          Не выбран
-        </option>
-        <option value="мультфильм">мультфильм</option>
-        <option value="аниме">аниме</option>
-        <option value="драма">драма</option>
-        <option value="детектив">детектив</option>
-        <option value="мелодрама">мелодрама</option>
-        <option value="комедия">комедия</option>
-        <option value="приключения">приключения</option>
-        <option value="боевик">боевик</option>
-        <option value="триллер">триллер</option>
-        <option value="ужасы">ужасы</option>
-        <option value="фантастика">фантастика</option>
-        <option value="фэнтези">фэнтези</option>
-        <option value="криминал">криминал</option>
-        <option value="биография">биография</option>
-        <option value="спорт">спорт</option>
-        <option value="музыка">музыка</option>
-        <option value="семейный">семейный</option>
-      </select>
+      {/* <p1>Фильтр по жанру: </p1> */}
+      <div className="filter">
+        <div>
+          <select
+            className="film-select"
+            name=""
+            id=""
+            onChange={(event) => {
+              setCurrentPage(0);
+              setGenre(event.target.value);
+            }}
+          >
+            <option value="all" selected>
+              Выберите жанр
+            </option>
+            <option value="мультфильм">мультфильм</option>
+            <option value="аниме">аниме</option>
+            <option value="драма">драма</option>
+            <option value="детектив">детектив</option>
+            <option value="мелодрама">мелодрама</option>
+            <option value="комедия">комедия</option>
+            <option value="приключения">приключения</option>
+            <option value="боевик">боевик</option>
+            <option value="триллер">триллер</option>
+            <option value="ужасы">ужасы</option>
+            <option value="фантастика">фантастика</option>
+            <option value="фэнтези">фэнтези</option>
+            <option value="криминал">криминал</option>
+            <option value="биография">биография</option>
+            <option value="спорт">спорт</option>
+            <option value="музыка">музыка</option>
+            <option value="семейный">семейный</option>
+          </select>
 
-      {/* Фильтр по странам*/}
-      <p1>Фильтр по странам: </p1>
-      <select
-        name=""
-        id=""
-        onChange={(event) => {
-          setCurrentPage(0);
-          setCountry(event.target.value);
-        }}
-      >
-        <option value="all">Не выбран</option>
-        <option value="Россия">Россия</option>
-        <option value="СССР">СССР</option>
-        <option value="США">США</option>
-        <option value="Франция">Франция</option>
-        <option value="Италия">Италия</option>
-        <option value="Испания">Испания</option>
-        <option value="Великобритания">Великобритания</option>
-        <option value="Германия">Германия</option>
-        <option value="Корея Южная">Корея Южная</option>
-        <option value="Япония">Япония</option>
-      </select>
-
-      {/* Сортировка */}
-      <p1>Сортировка: </p1>
-      <select
-        name=""
-        id=""
-        onChange={(event) => {
-          setCurrentPage(0);
-          setSort(event.target.value);
-        }}
-      >
-        <option value="random">В случайном порядке</option>
-        <option value="nothing" selected>
-          По рейтингу (по уменьшению)
-        </option>
-        <option value="increaseRate">По рейтингу (по увеличению)</option>
-        <option value="increaseYear">По годам (20 век - н.в)</option>
-        <option value="declineYear">По годам (н.в - 20 век)</option>
-        <option value="increaseDuration">
-          По длительности (по увеличению)
-        </option>
-        <option value="declineDuration">По длительности (по уменьшению)</option>
-        <option value="increaseVoteCount">
-          По кол-ву голосов на КиноПоиске (по увеличению)
-        </option>
-        <option value="declineVoteCount">
-          По кол-ву голосов на КиноПоиске (по уменьшению)
-        </option>
-      </select>
-
+          {/* Фильтр по странам*/}
+          {/* <p1>Фильтр по странам: </p1> */}
+          <select
+            className="film-select"
+            name=""
+            id=""
+            onChange={(event) => {
+              setCurrentPage(0);
+              setCountry(event.target.value);
+            }}
+          >
+            <option value="all">Фильтр по странам</option>
+            <option value="Россия">Россия</option>
+            <option value="СССР">СССР</option>
+            <option value="США">США</option>
+            <option value="Франция">Франция</option>
+            <option value="Италия">Италия</option>
+            <option value="Испания">Испания</option>
+            <option value="Великобритания">Великобритания</option>
+            <option value="Германия">Германия</option>
+            <option value="Корея Южная">Корея Южная</option>
+            <option value="Япония">Япония</option>
+          </select>
+        </div>
+        {/* Сортировка */}
+        <div>
+          <p1>Сортировка: </p1>
+          <select
+            className="film-select"
+            name=""
+            id=""
+            onChange={(event) => {
+              setCurrentPage(0);
+              setSort(event.target.value);
+            }}
+          >
+            <option value="random">В случайном порядке</option>
+            <option value="nothing" selected>
+              По рейтингу (по уменьшению)
+            </option>
+            <option value="increaseRate">По рейтингу (по увеличению)</option>
+            <option value="increaseYear">По годам (20 век - н.в)</option>
+            <option value="declineYear">По годам (н.в - 20 век)</option>
+            <option value="increaseDuration">
+              По длительности (по увеличению)
+            </option>
+            <option value="declineDuration">
+              По длительности (по уменьшению)
+            </option>
+            <option value="increaseVoteCount">
+              По кол-ву голосов на КиноПоиске (по увеличению)
+            </option>
+            <option value="declineVoteCount">
+              По кол-ву голосов на КиноПоиске (по уменьшению)
+            </option>
+          </select>
+        </div>
+      </div>
       <div className="filmList">
         <Row>
           {filmList &&
