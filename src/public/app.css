@@ -81,3 +81,13 @@ pre {
     width: auto;
   }
 } */
+
+h2 {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+ul.navbar.navbar-dark.bg-dark.menu.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

@@ -1,13 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Form, Row, Col } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/action';
 import firebase from '../../FireBaseConnection';
 
 import { useInputs, submit } from '../Input/Input';
-
-const { Button } = require('react-bootstrap');
 
 const Login = () => {
   const [inputs, setInputs] = useInputs({
