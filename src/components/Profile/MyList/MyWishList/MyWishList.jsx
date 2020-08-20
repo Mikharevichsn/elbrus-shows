@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import MyFavoriteList from './MyFavoriteList/MyFavoriteList';
 
-const MyList = () => {
 
+
+const MyWishList = () => {
+  
 const user = useSelector(state => state.user)
 console.log(user)
-
   return (
     <div>
-      <MyFavoriteList/>
-   </div>
+      
+    </div>
   );
 }
 
-export default MyList;
+export default MyWishList;

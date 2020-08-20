@@ -26,7 +26,9 @@ export const submit = async (obj, method) => {
     }
   );
   const result = await responce.json();
-
+  if (result.error) {
+    return result.error;
+  }
 
   document.cookie = `user_idToken=${result.idToken}; max-age=${result.expiresIn}`;
   return result;
