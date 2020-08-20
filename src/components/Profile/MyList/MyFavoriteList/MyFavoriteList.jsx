@@ -24,18 +24,20 @@ export const MyFavoriteList = () => {
       // { id: 6, name: "Richard" }
     ],
     right: [
-      // { id: 7, name: "george" },
-      // { id: 8, name: "rupert" },
-      // { id: 9, name: "alice" },
-      // { id: 10, name: "katherine" },
-      // { id: 11, name: "pam" },
-      // { id: 12, name: "katie" }
+      { id: 7, name: "george" },
+      { id: 8, name: "rupert" },
+      { id: 9, name: "alice" },
+      { id: 10, name: "katherine" },
+      { id: 11, name: "pam" },
+      { id: 12, name: "katie" }
     ]
   });
 
-  useEffect(() => {
-    
-  }, [])
+  // useEffect(() => {
+  //   const FavoriteList = user.favoriteList
+  //   setItems(state => [...state, ...FavoriteList])
+  // }, [])
+  
 
   useEffect(() => {
  
