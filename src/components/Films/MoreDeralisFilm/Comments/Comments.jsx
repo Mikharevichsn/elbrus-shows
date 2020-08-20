@@ -16,28 +16,28 @@ import writer from '../../../../public/img/writer.png';
 import popcorn from '../../../../public/img/popcorn.png';
 
 const Comments = () => {
+
   const comments = useSelector((state) => state.comments);
-  const user = useSelector((state) => state.user);
-const [ratingSum, setRatingSum] = useState(0)
 
   const dispatch = useDispatch();
   const filmIdParams = useParams().id;
 
   useEffect(() => {
     dispatch(setComments(filmIdParams));
+  
   }, [dispatch, filmIdParams]);
 
+const [count, setCount] = useState(comments.length)
+useEffect(() => {
+  if(comments.length !== count) {
+    dispatch(setComments(filmIdParams));
+    setCount(comments.length)
 
- const checkRating = (actor, scenario, general) => {
-  console.log(actor)
+  }  
+}, [comments]);
 
-   console.log( (Number(actor) + Number(scenario) + Number(general)))
-   return (Number(actor) + Number(scenario) + Number(general))
- }
 
- const setColor = (num) => num >= 10 ? 'success' : 'warning'
 
- 
 
   return (
     <Container>
@@ -51,7 +51,8 @@ const [ratingSum, setRatingSum] = useState(0)
         comments.map((el, i) => (
           <>
               <ListGroup style={{padding: '20px'}}>
-                <ListGroupItem color='info' ><h4>Здесь Имя</h4></ListGroupItem>
+                {console.log(el)}
+        <ListGroupItem color= {el.result} ><h4>{el.nameUser}</h4></ListGroupItem>
                 {console.log(el.rating.actor)}
                   <ListGroupItem color={ el.result} >{el.post}</ListGroupItem>
                 

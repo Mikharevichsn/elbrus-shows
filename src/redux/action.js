@@ -9,6 +9,12 @@ import {
   SAVE_COMMENTS,
 } from './actionTypes';
 
+
+const checkRating = (actor, scenario, general) =>
+  Number(actor) + Number(scenario) + Number(general);
+const setColor = (num) =>
+  num >= 12 ? 'success' : num >= 9 ? 'warning' : 'danger';
+
 export const getContent = () => {
   return async (dispatch) => {
     await fetch('https://elbrus-shows.firebaseio.com/films.json', {
@@ -24,6 +30,7 @@ export const getContent = () => {
   };
 };
 
+
 export const saveComment = (obj) => {
   return async (dispatch) => {
     await fetch('https://elbrus-shows.firebaseio.com/comments.json', {
@@ -31,6 +38,11 @@ export const saveComment = (obj) => {
       body: JSON.stringify(obj),
       headers: { 'Content-type': 'application/json' },
     });
+
+    setColor(
+      checkRating(obj.rating.actor, obj.rating.scenario, obj.rating.general)
+    );
+
     return dispatch({
       type: SAVE_COMMENTS,
       payload: [obj],
@@ -40,15 +52,6 @@ export const saveComment = (obj) => {
 
 export const setComments = (idFilm) => {
   return async (dispatch) => {
-    const checkRating = (actor, scenario, general) => {
-      console.log(actor);
-      console.log(Number(actor) + Number(scenario) + Number(general));
-      return Number(actor) + Number(scenario) + Number(general);
-    };
-
-    const setColor = (num) =>
-      num >= 12 ? 'success' : num >= 9 ? 'warning' : 'danger';
-
     const response = await fetch(
       'https://elbrus-shows.firebaseio.com/comments.json',
       {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './style.css';
 
@@ -17,18 +17,20 @@ import {
   DropdownItem,
   DropdownToggle,
   Row,
+  UncontrolledTooltip,
 } from 'reactstrap';
 import { useInputs } from '../../../Input/Input';
 import { useParams } from 'react-router-dom';
-import { saveComment } from '../../../../redux/action';
+import { saveComment, setComments } from '../../../../redux/action';
+import actorIcon from '../../../../public/img/actor.png';
+import writerIcon from '../../../../public/img/writer.png';
+import popcornIcon from '../../../../public/img/popcorn.png';
 
 const ModalComments = (props) => {
   const [dropdownOpen1, setDropdownOpen1] = useState(false);
   const [dropdownOpen2, setDropdownOpen2] = useState(false);
   const [dropdownOpen3, setDropdownOpen3] = useState(false);
-
   const [modal, setModal] = useState(false);
-
   const [postvalue, setPostValue] = useInputs({ post: '' });
   const [rating, setRating] = useInputs({
     scenario: '',
@@ -45,7 +47,9 @@ const ModalComments = (props) => {
 
   const toggle = () => setModal(!modal);
   const user = useSelector((state) => state.user);
-  console.log(user)
+
+
+  const nameUser = user.displayName;
   return (
     <div>
       <Form inline onSubmit={(e) => e.preventDefault()}>
@@ -57,7 +61,45 @@ const ModalComments = (props) => {
         className="modal-lg shadow-lg p-3 mb-5 bg-white rounded"
       >
         <ModalHeader toggle={toggle} style={{ color: 'black' }}>
-          Modal title
+          {nameUser}
+          <div>
+            <span className="icons">
+              <img
+                src={writerIcon}
+                alt="actor-icon"
+                style={{ width: '18%' }}
+                id="writerIcon"
+              />
+              <UncontrolledTooltip placement="top" target="writerIcon">
+                Актерская игра
+              </UncontrolledTooltip>
+              {rating.scenario}
+            </span>
+            <span>
+              <img
+                src={actorIcon}
+                alt="actor-icon"
+                style={{ width: '18%' }}
+                id="Actor"
+              />
+              <UncontrolledTooltip placement="top" target="Actor">
+                Сценарий
+              </UncontrolledTooltip>
+              {rating.actors}
+            </span>
+            <span>
+              <img
+                src={popcornIcon}
+                alt="actor-icon"
+                style={{ width: '18%' }}
+                id="popcornIcon"
+              />
+              <UncontrolledTooltip placement="top" target="Actor">
+                Сценарий
+              </UncontrolledTooltip>
+              {rating.general}
+            </span>
+          </div>
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -134,7 +176,7 @@ const ModalComments = (props) => {
             placeholder="Оставьте свой отзыв"
             rows={5}
             onChange={setPostValue}
-            style={{padding: '10px'}}
+            style={{ padding: '10px' }}
           />
         </ModalBody>
         <ModalFooter>
@@ -142,12 +184,12 @@ const ModalComments = (props) => {
             color="primary"
             onClick={() => {
               toggle();
-              dispatch(saveComment({ rating, ...postvalue, filmId }));
+              dispatch(saveComment({ rating, ...postvalue, filmId, nameUser }));
             }}
           >
             Сохранить
           </Button>{' '}
-          <Button color="secondary" onClick={toggle} >
+          <Button color="secondary" onClick={toggle}>
             Отмена
           </Button>
         </ModalFooter>
