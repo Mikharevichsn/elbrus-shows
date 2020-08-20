@@ -45,19 +45,17 @@ store.subscribe(() => {
     videoUrl: store.getState().videoUrl,
     user: store.getState().user,
     comments: store.getState().comments,
-    news: store.getState().news
-
+    news: store.getState().news,
   });
 });
 
 ReactDOM.render(
-  
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>,
-  
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+
   document.getElementById('root')
 );
 

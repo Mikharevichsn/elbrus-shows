@@ -18,27 +18,27 @@ const Login = () => {
 
   return (
     <>
-      <div class="user_forms-login">
-        <h2 class="forms_title">Авторизация</h2>
-        <form class="forms_form">
-          <fieldset class="forms_fieldset">
-            <div class="forms_field">
+      <div className="user_forms-login">
+        <h2 className="forms_title">Авторизация</h2>
+        <form className="forms_form">
+          <fieldset className="forms_fieldset">
+            <div className="forms_field">
               <input
-                class="forms_field-input"
+                className="forms_field-input"
                 placeholder="Email"
                 name="email"
                 required
-                autofocus
+                autoFocus
                 value={inputs.email}
                 onChange={setInputs}
                 type="email"
               />
             </div>
-            <div class="forms_field">
+            <div className="forms_field">
               <input
                 type="password"
                 placeholder="Пароль"
-                class="forms_field-input"
+                className="forms_field-input"
                 name="password"
                 value={inputs.password}
                 onChange={setInputs}
@@ -46,12 +46,12 @@ const Login = () => {
               />
             </div>
           </fieldset>
-          <div class="forms_buttons">
+          <div className="forms_buttons">
             <div></div>
             <input
               type="submit"
               value="Войти"
-              class="forms_buttons-action"
+              className="forms_buttons-action"
               onClick={async (e) => {
                 e.preventDefault();
                 const loginData = await submit(inputs, 'signInWithPassword');

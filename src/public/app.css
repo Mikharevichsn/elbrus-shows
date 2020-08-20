@@ -58,11 +58,14 @@ pre {
   border: 1px solid #fff;
   padding: 5px;
   border-radius: 5px;
-  box-shadow: #fff 0 0 10px 1px;
+  box-shadow: rgb(129, 53, 216) 0 0 15px 5px;
 }
 
 .film-select {
   padding: 5px;
+  background-color: rgb(123, 79, 173);
+  color: white;
+  border-radius: 5px;
 }
 
 .film-select.sort {

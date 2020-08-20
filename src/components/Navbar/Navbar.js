@@ -15,12 +15,12 @@ const NavBar = () => {
       <div className="navbar-links-group">
         <NavItem className="a">
           <Link className="link" to="/films">
-            Кинчики
+            Фильмы
           </Link>
         </NavItem>
         <NavItem className="a">
           <Link className="link" to="/log-in">
-            Sign in
+            Войти
           </Link>
         </NavItem>
         {user.localId && (

@@ -50,11 +50,11 @@ export const reducer = (state, action) => {
         user: action.payload,
       };
 
-      case GET_NEWS:
-        return {
-          ...state,
-          news:  action.payload
-        }
+    case GET_NEWS:
+      return {
+        ...state,
+        news: action.payload,
+      };
 
     case ADD_BOOKMARK:
       return {
