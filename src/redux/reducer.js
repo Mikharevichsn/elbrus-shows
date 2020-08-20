@@ -65,7 +65,7 @@ export const reducer = (state, action) => {
 
     case DEL_BOOKMARK:
       const tmpWishlist = [...state.user.wishList].filter(
-        (el) => el !== action.payload
+        (el) => el.filmId !== action.payload.filmId
       );
       return {
         ...state,
@@ -86,7 +86,7 @@ export const reducer = (state, action) => {
 
     case DEL_LIKE:
       const tmpFavoriteList = [...state.user.favoriteList].filter(
-        (el) => el !== action.payload
+        (el) => el.filmId !== action.payload.filmId
       );
       return {
         ...state,
