@@ -6,7 +6,8 @@ import {
   GET_VIDEO,
   START_VIDEO,
   SET_COMMENTS,
-  SAVE_COMMENTS
+  SAVE_COMMENTS,
+  ADD_BOOKMARK,
 } from './actionTypes';
 
 export const getContent = () => {
@@ -100,3 +101,10 @@ export const setUser = (payload) => {
     payload,
   };
 };
+
+export const addBookmark = (payload) => {
+  return {
+    type: ADD_BOOKMARK,
+    payload,
+  }
+}
