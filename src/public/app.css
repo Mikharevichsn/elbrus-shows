@@ -47,6 +47,7 @@ pre {
 
 .container nav ul.pagination {
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .filter {
@@ -62,6 +63,10 @@ pre {
 .film-select {
   padding: 5px;
   font-size: larger;
+}
+
+.btn {
+  padding: 0.5em !important;
 }
 
 /* .filmList {

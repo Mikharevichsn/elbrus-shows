@@ -28,7 +28,7 @@ export default function FilmCard(props) {
     } else {
       setBookmarked(false);
     }
-  }, [userObj, film]);
+  }, [userObj, film, user]);
 
   useEffect(() => {
     if (user && userObj.favoriteList.includes(film.filmId)) {
@@ -36,10 +36,10 @@ export default function FilmCard(props) {
     } else {
       setLiked(false);
     }
-  }, [userObj, film]);
+  }, [userObj, film, user]);
 
   return (
-    <Col sm="4" lg="3" xs="12">
+    <Col sm="6" lg="3" xs="12">
       <Card style={{ backgroundColor: '#000' }}>
         <Link to={`/films/${film.filmId}`}>
           <CardImg src={`${film.posterUrl}`} alt="Card image cap" />
