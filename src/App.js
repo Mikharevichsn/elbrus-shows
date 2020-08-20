@@ -26,8 +26,8 @@ function App() {
 
   return (
     <>
-      <NavBar />
       <Container>
+        <NavBar />
         <Switch>
           <Route path="/films/:id">
             <MoreDetails />
