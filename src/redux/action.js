@@ -7,7 +7,11 @@ import {
   START_VIDEO,
   SET_COMMENTS,
   SAVE_COMMENTS,
-  GET_NEWS
+  GET_NEWS,
+  ADD_BOOKMARK,
+  DEL_BOOKMARK,
+  ADD_LIKE,
+  DEL_LIKE,
 } from './actionTypes';
 
 
@@ -125,6 +129,33 @@ export const getVideo = (payload) => {
 export const setUser = (payload) => {
   return {
     type: SET_USER,
+    payload,
+  };
+};
+
+export const addBookmark = (payload) => {
+  return {
+    type: ADD_BOOKMARK,
+    payload,
+  };
+};
+
+export const delBookmark = (payload) => {
+  return {
+    type: DEL_BOOKMARK,
+    payload,
+  };
+};
+
+export const addLike = (payload) => {
+  return {
+    type: ADD_LIKE,
+    payload,
+  };
+};
+export const delLike = (payload) => {
+  return {
+    type: DEL_LIKE,
     payload,
   };
 };

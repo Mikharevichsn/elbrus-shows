@@ -25,6 +25,11 @@ const NavBar = () => {
           Войти
         </Link>
       </NavItem>
+      <NavItem className="a">
+        <Link className="link" to="/log-in">
+          new Регистрация
+        </Link>
+      </NavItem>
     </Nav>
   );
 };

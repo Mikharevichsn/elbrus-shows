@@ -13,9 +13,11 @@ export default function UserRegister() {
 
   return (
     <>
-      <div>
-        <pre style={{ color: 'white' }}>{JSON.stringify(state, null, 2)}</pre>
+      <div class="user_forms-signup">
+        <h2 class="forms_title">Регистрация</h2>
+        {/* <pre style={{ color: 'white' }}>{JSON.stringify(state, null, 2)}</pre> */}
         <form
+          class="forms_form"
           name="register"
           onSubmit={async (e) => {
             e.preventDefault();
@@ -62,31 +64,57 @@ export default function UserRegister() {
             document.cookie = `user_id=${userResult.name}; max-age=${registerResult.expiresIn}`;
           }}
         >
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-            value={state.email}
-            onChange={(e) => setState({ ...state, email: e.target.value })}
-          />
-          <input
-            type="text"
-            name="userName"
-            id="userName"
-            placeholder="Ваше имя"
-            value={state.userName}
-            onChange={(e) => setState({ ...state, userName: e.target.value })}
-          />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="password"
-            value={state.password}
-            onChange={(e) => setState({ ...state, password: e.target.value })}
-          />
-          <button type="submit">Зарегистрироваться</button>
+          <fieldset class="forms_fieldset">
+            <div class="forms_field">
+              <input
+                class="forms_field-input"
+                required
+                type="text"
+                name="userName"
+                id="userName"
+                placeholder="Ваше имя"
+                value={state.userName}
+                onChange={(e) =>
+                  setState({ ...state, userName: e.target.value })
+                }
+              />
+            </div>
+
+            <div class="forms_field">
+              <input
+                class="forms_field-input"
+                required
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                value={state.email}
+                onChange={(e) => setState({ ...state, email: e.target.value })}
+              />
+            </div>
+
+            <div class="forms_field">
+              <input
+                class="forms_field-input"
+                required
+                type="password"
+                name="password"
+                id="password"
+                placeholder="password"
+                value={state.password}
+                onChange={(e) =>
+                  setState({ ...state, password: e.target.value })
+                }
+              />
+            </div>
+          </fieldset>
+          <div class="forms_buttons">
+            <input
+              type="submit"
+              value="Зарегаться"
+              class="forms_buttons-action"
+            />
+          </div>
         </form>
       </div>
     </>

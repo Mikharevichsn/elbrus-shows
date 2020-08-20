@@ -6,6 +6,10 @@ import {
   SET_COMMENTS,
   SAVE_COMMENTS,
   GET_NEWS,
+  ADD_BOOKMARK,
+  DEL_BOOKMARK,
+  ADD_LIKE,
+  DEL_LIKE,
 } from './actionTypes';
 
 export const reducer = (state, action) => {
@@ -30,13 +34,13 @@ export const reducer = (state, action) => {
     case SET_COMMENTS:
       return {
         ...state,
-        comments: [ ...action.payload],
+        comments: [...action.payload],
       };
-      case SAVE_COMMENTS:
-        return {
-          ...state,
-          comments: [...state.comments, ...action.payload],
-        };
+    case SAVE_COMMENTS:
+      return {
+        ...state,
+        comments: [...state.comments, ...action.payload],
+      };
 
     case SET_USER:
       return {
@@ -49,6 +53,48 @@ export const reducer = (state, action) => {
           ...state,
           news:  action.payload
         }
+
+    case ADD_BOOKMARK:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          wishList: [...state.user.wishList, action.payload],
+        },
+      };
+
+    case DEL_BOOKMARK:
+      const tmpWishlist = [...state.user.wishList].filter(
+        (el) => el !== action.payload
+      );
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          wishList: [...tmpWishlist],
+        },
+      };
+
+    case ADD_LIKE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favoriteList: [...state.user.favoriteList, action.payload],
+        },
+      };
+
+    case DEL_LIKE:
+      const tmpFavoriteList = [...state.user.favoriteList].filter(
+        (el) => el !== action.payload
+      );
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favoriteList: [...tmpFavoriteList],
+        },
+      };
 
     default:
       return state;

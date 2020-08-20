@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
 import {Main} from './components/Home/Main/Main.js'
 import UserInfo from './components/User/UserInfo';
+import AuthReg from './components/User/AuthReg/AuthReg';
 
 
 
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/registration">
             <UserRegister />
+          </Route>
+          <Route path="/log-in">
+            <AuthReg />
           </Route>
           <Route path="/">
             <Main />
