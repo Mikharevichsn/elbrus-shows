@@ -10,19 +10,12 @@ import FilmList from './components/Films/FilmList';
 import UserRegister from './components/User/UserRegister';
 import Login from './components/Login/Login.jsx';
 import MoreDetails from './components/Films/MoreDeralisFilm/MoreDetails';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getContent } from './redux/action';
-import {Main} from './components/Home/Main/Main.js'
+import { Main } from './components/Home/Main/Main.js';
 import UserInfo from './components/User/UserInfo';
 import AuthReg from './components/User/AuthReg/AuthReg';
 import MyCabinet from './components/Profile/MyCabinet/MyCabinet';
-
-
-
-
-
-
-
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +27,6 @@ function App() {
   return (
     <>
       <NavBar />
-      <UserInfo />
       <Container>
         <Switch>
           <Route path="/films/:id">

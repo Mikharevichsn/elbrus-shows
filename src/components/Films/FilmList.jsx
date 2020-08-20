@@ -119,8 +119,7 @@ export default function FilmList() {
     }
   }, [sort, genre, country]);
 
-  const list =
-    filmList &&
+  filmList &&
     filteredFilms.map((film, i) => {
       if (
         i >= currentPage * filmsOnPage &&
@@ -128,12 +127,11 @@ export default function FilmList() {
       ) {
         return <FilmCard film={film} />;
       }
+      return '';
     });
 
   return (
     <>
-      {/* Фильтр по жанрам*/}
-      {/* <p1>Фильтр по жанру: </p1> */}
       <div className="filter">
         <div>
           <select
@@ -168,7 +166,6 @@ export default function FilmList() {
           </select>
 
           {/* Фильтр по странам*/}
-          {/* <p1>Фильтр по странам: </p1> */}
           <select
             className="film-select"
             name=""
@@ -235,6 +232,7 @@ export default function FilmList() {
               ) {
                 return <FilmCard film={film} />;
               }
+              return false;
             })}
         </Row>
       </div>
