@@ -16,24 +16,25 @@ export const Main = () => {
 
   const newsData = [];
 
-const loadNews = () => {
-  for (let i = 0; i < news.length; i++) {
-    newsData.push({
-      index: i,
-      headline: `${
-        news[i].title.replace(/-\s+([^\n]+)/g, '').length > 50
-          ? `${news[i].title.replace(/-\s+([^\n]+)/g, '').slice(0, 50)}...`
-          : news[i].title.replace(/-\s+([^\n]+)/g, '')
-      }`,
-      button: 'Подробней',
-      src: news[i].urlToImage,
-      srcNews: news[i].url
-    });
-  }
+  const loadNews = () => {
+    if (news) {
+      for (let i = 0; i < news.length; i++) {
+        newsData.push({
+          index: i,
+          headline: `${
+            news[i].title.replace(/-\s+([^\n]+)/g, '').length > 50
+              ? `${news[i].title.replace(/-\s+([^\n]+)/g, '').slice(0, 50)}...`
+              : news[i].title.replace(/-\s+([^\n]+)/g, '')
+          }`,
+          button: 'Подробней',
+          src: news[i].urlToImage,
+          srcNews: news[i].url,
+        });
+      }
+    }
+  };
 
-}
-
-loadNews()
+  loadNews();
 
   return (
     <>

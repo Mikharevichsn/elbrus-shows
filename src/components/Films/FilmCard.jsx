@@ -91,10 +91,10 @@ export default function FilmCard(props) {
                   if (user !== undefined) {
                     if (bookmarked) {
                       // удалить фильтром из массива текущ фильм
-                      dispatch(delBookmark(film.filmId));
+                      dispatch(delBookmark(film));
                       console.log('delay delete');
                     } else {
-                      dispatch(addBookmark(film.filmId));
+                      dispatch(addBookmark(film));
                     }
                   }
                 }}
@@ -139,10 +139,10 @@ export default function FilmCard(props) {
                   if (user !== undefined) {
                     if (liked) {
                       // удалить фильтром из массива текущ фильм
-                      dispatch(delLike(film.filmId));
+                      dispatch(delLike(film));
                       console.log('delay delete');
                     } else {
-                      dispatch(addLike(film.filmId));
+                      dispatch(addLike(film));
                     }
                   }
                 }}

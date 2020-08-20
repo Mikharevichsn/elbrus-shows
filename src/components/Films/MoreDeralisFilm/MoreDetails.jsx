@@ -7,8 +7,6 @@ import ModalComments from './ModalComment/ModalComments';
 import Comments from './Comments/Comments';
 
 const MoreDetails = () => {
-  // const [stateFilms, setState] = useState([]);
-  // const [comments, setComments] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -18,19 +16,17 @@ const MoreDetails = () => {
   const filmOne = useParams().id;
   // const [stateBoolean, setStateBoolean] = useState(false)
   const film = filmList.find((el) => el.filmId === Number(filmOne));
-const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(startFetch(film.filmId));
   }, [dispatch, film.filmId]);
-  
+
   useEffect(() => {
     dispatch(startVideoFetch(film.filmId));
-   
-    
-  }, [ film.filmId, dispatch]);
+  }, [film.filmId, dispatch]);
 
-console.log(video)
+  console.log(video);
 
   return (
     <Container>
@@ -118,7 +114,10 @@ console.log(video)
                 <iframe
                   title="trailer"
                   class="embed-responsive-item"
-                  src={video.trailers[0] && video.trailers[0].url.replace(/watch\?v=/g, 'embed/')}
+                  src={
+                    video.trailers[0] &&
+                    video.trailers[0].url.replace(/watch\?v=/g, 'embed/')
+                  }
                   allowfullscreen
                 ></iframe>
               </Col>
@@ -130,10 +129,7 @@ console.log(video)
           <Row className={'pt-5'}>
             <Comments />
           </Row>
-          <Row className={'pt-5'}>
-           { user.localId && <ModalComments />}
-          </Row>
-      
+          <Row className={'pt-5'}>{user.localId && <ModalComments />}</Row>
         </>
       )}
     </Container>
