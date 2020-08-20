@@ -9,7 +9,7 @@ import {
 import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
-import { addBookmark, addLike, addArrBookmarks, addArrLikes } from '../../../../redux/action';
+import {  addArrBookmarks, addArrLikes } from '../../../../redux/action';
 
 
 
@@ -27,6 +27,7 @@ const dispatch = useDispatch()
   const [check, setCheck] = React.useState(false)
  
   const onClickSaveState = (arr) => {
+    console.log(arr)
     return arr.map(el => el.allInfo)
     
     
@@ -42,7 +43,16 @@ const dispatch = useDispatch()
       poster: el.nameRu,
     }));
     setItems((state) => ({ ...state, left: [...favoriteList] }));
-  }, []);
+  }, [user.favoriteList]);
+
+  useEffect(() => {
+    const favoriteList = user.favoriteList.map((el, i) => ({
+      allInfo: el,
+      id: i + 1,
+      poster: el.nameRu,
+    }));
+    setItems((state) => ({ ...state, left: [...favoriteList] }));
+  }, [check, user.favoriteList])
 
   useEffect(() => {
     const wishList = user.wishList.map((el, i) => ({
@@ -51,7 +61,7 @@ const dispatch = useDispatch()
       poster: el.nameRu,
     }));
     setItems((state) => ({ ...state, right: [...wishList] }));
-  }, []);
+  }, [user.wishList]);
 
 
 useEffect(() => {
@@ -61,16 +71,9 @@ useEffect(() => {
     poster: el.nameRu,
   }));
   setItems((state) => ({ ...state, right: [...wishList] }));
-}, [check])
+}, [check, user.wishList])
 
-useEffect(() => {
-  const favoriteList = user.favoriteList.map((el, i) => ({
-    allInfo: el,
-    id: i + 1,
-    poster: el.nameRu,
-  }));
-  setItems((state) => ({ ...state, left: [...favoriteList] }));
-}, [check])
+
 
 
 

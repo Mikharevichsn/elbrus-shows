@@ -82,7 +82,7 @@ export const reducer = (state, action) => {
           ...state,
           user: {
             ...state.user,
-            favoriteList: [ ...action.payload],
+            wishList: [ ...action.payload],
           },
         };
 
