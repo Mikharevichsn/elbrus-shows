@@ -8,3 +8,6 @@ export const START_VIDEO = 'START_VIDEO';
 export const SET_COMMENTS = 'SET_COMMENTS';
 export const SAVE_COMMENTS = 'SAVE_COMMENTS';
 export const ADD_BOOKMARK = 'ADD_BOOKMARK';
+export const DEL_BOOKMARK = 'DEL_BOOKMARK';
+export const ADD_LIKE = 'ADD_LIKE';
+export const DEL_LIKE = 'DEL_LIKE';
