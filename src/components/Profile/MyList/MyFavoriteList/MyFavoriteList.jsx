@@ -1,45 +1,83 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   GridContextProvider,
   GridDropZone,
   GridItem,
   swap,
-  move
-} from "react-grid-dnd";
-import './style.css'
-import { useSelector } from "react-redux";
+  move,
+} from 'react-grid-dnd';
+import './style.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { Row, Col, Button } from 'reactstrap';
+import {  addArrBookmarks, addArrLikes } from '../../../../redux/action';
+
+
+
 export const MyFavoriteList = () => {
+  const user = useSelector((state) => state.user);
+const dispatch = useDispatch()
 
-  const user = useSelector(state => state.user)
 
-  console.log(user)
 
   const [items, setItems] = React.useState({
-    left: [
-      // { id: 1, name: "ben" },
-      // { id: 2, name: "joe" },
-      // { id: 3, name: "jason" },
-      // { id: 4, name: "chris" },
-      // { id: 5, name: "heather" },
-      // { id: 6, name: "Richard" }
-    ],
-    right: [
-      // { id: 7, name: "george" },
-      // { id: 8, name: "rupert" },
-      // { id: 9, name: "alice" },
-      // { id: 10, name: "katherine" },
-      // { id: 11, name: "pam" },
-      // { id: 12, name: "katie" }
-    ]
+    left: [],
+    right: [],
   });
 
-  useEffect(() => {
+  const [check, setCheck] = React.useState(false)
+ 
+  const onClickSaveState = (arr) => {
+    console.log(arr)
+    return arr.map(el => el.allInfo)
     
-  }, [])
+    
+  }
+
+
+  console.log('items>>>>>>', items);
 
   useEffect(() => {
- 
-  }, [])
+    const favoriteList = user.favoriteList.map((el, i) => ({
+      allInfo: el,
+      id: i + 1,
+      poster: el.nameRu,
+    }));
+    setItems((state) => ({ ...state, left: [...favoriteList] }));
+  }, [user.favoriteList]);
+
+  useEffect(() => {
+    const favoriteList = user.favoriteList.map((el, i) => ({
+      allInfo: el,
+      id: i + 1,
+      poster: el.nameRu,
+    }));
+    setItems((state) => ({ ...state, left: [...favoriteList] }));
+  }, [check, user.favoriteList])
+
+  useEffect(() => {
+    const wishList = user.wishList.map((el, i) => ({
+      allInfo: el,
+      id: i + 1,
+      poster: el.nameRu,
+    }));
+    setItems((state) => ({ ...state, right: [...wishList] }));
+  }, [user.wishList]);
+
+
+useEffect(() => {
+  const wishList = user.wishList.map((el, i) => ({
+    allInfo: el,
+    id: i + 1,
+    poster: el.nameRu,
+  }));
+  setItems((state) => ({ ...state, right: [...wishList] }));
+}, [check, user.wishList])
+
+
+
+
+
+  console.log(items);
 
   function onChange(sourceId, sourceIndex, targetIndex, targetId) {
     if (targetId) {
@@ -52,55 +90,68 @@ export const MyFavoriteList = () => {
       return setItems({
         ...items,
         [sourceId]: result[0],
-        [targetId]: result[1]
+        [targetId]: result[1],
       });
     }
 
     const result = swap(items[sourceId], sourceIndex, targetIndex);
     return setItems({
       ...items,
-      [sourceId]: result
+      [sourceId]: result,
     });
   }
 
   return (
-    <GridContextProvider onChange={onChange}>
-      <div className="containerGrid">
-        <GridDropZone
-          className="dropzone left"
-          id="left"
-          boxesPerRow={4}
-          rowHeight={70}
-        >
-          {items.left.map(item => (
-            <GridItem key={item.name}>
-              <div className="grid-item">
-                <div className="grid-item-content">
-                  {item.name[0].toUpperCase()}
-                </div>
-              </div>
-            </GridItem>
-          ))}
-        </GridDropZone>
-        <GridDropZone
-          className="dropzone right"
-          id="right"
-          boxesPerRow={4}
-          rowHeight={70}
-        >
-          {items.right.map(item => (
-            <GridItem key={item.name}>
-              <div className="grid-item">
-                <div className="grid-item-content">
-                  {item.name}
-                </div>
-              </div>
-            </GridItem>
-          ))}
-        </GridDropZone>
-      </div>
-    </GridContextProvider>
-  );
-}
+    <>
+      <Row>
+        <Col>
+          <h4>Любимые фильмы</h4>
+        </Col>
+        <Col>
+          <h4>Хочу посмотреть</h4>
+        </Col>
+      </Row>
 
-export default MyFavoriteList
+      <GridContextProvider onChange={onChange}>
+        <div className="containerGrid">
+          <GridDropZone
+            className="dropzone left"
+            id="left"
+            boxesPerRow={3}
+            rowHeight={100}
+          >
+            {items.left &&
+              items.left.map((item) => (
+                <GridItem key={Math.random() * (200 - 1) + 1}>
+                  <div className="grid-item">
+                    <div className="grid-item-content">
+                      <div>{item.poster}</div>
+                    </div>
+                  </div>
+                </GridItem>
+              ))}
+          </GridDropZone>
+
+          <GridDropZone
+            className="dropzone right"
+            id="right"
+            boxesPerRow={3}
+            rowHeight={100}
+          >
+            {items.right &&
+              items.right.map((item) => (
+                <GridItem key={Math.random() * (200 - 1) + 1}>
+                  <div className="grid-item">
+                    <div className="grid-item-content">{item.poster}</div>
+                  </div>
+                </GridItem>
+              ))}
+          </GridDropZone>
+        </div>
+        <Button onClick = {() =>{ dispatch(addArrBookmarks(onClickSaveState(items.right))); dispatch(addArrLikes(onClickSaveState(items.left))); setCheck(state => !state)}}>Сохранить</Button>
+      </GridContextProvider>
+    </>
+  );
+};
+
+export default MyFavoriteList;
