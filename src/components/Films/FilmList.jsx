@@ -145,16 +145,13 @@ export default function FilmList() {
             className="film-select"
             name=""
             id=""
-            value="Выберите жанр"
-            defaultValue="Выберите жанр"
+            defaultValue="all"
             onChange={(event) => {
               setCurrentPage(0);
               setGenre(event.target.value);
             }}
           >
-            <option value="all" selected>
-              Выберите жанр
-            </option>
+            <option value="all">Выберите жанр</option>
             <option value="мультфильм">мультфильм</option>
             <option value="аниме">аниме</option>
             <option value="драма">драма</option>
@@ -179,6 +176,7 @@ export default function FilmList() {
             className="film-select"
             name=""
             id=""
+            defaultValue="all"
             onChange={(event) => {
               setCurrentPage(0);
               setCountry(event.target.value);
@@ -203,15 +201,14 @@ export default function FilmList() {
             className="film-select sort"
             name=""
             id=""
+            defaultValue="nothing"
             onChange={(event) => {
               setCurrentPage(0);
               setSort(event.target.value);
             }}
           >
             <option value="random">В случайном порядке</option>
-            <option value="nothing" selected>
-              По рейтингу (по уменьшению)
-            </option>
+            <option value="nothing">По рейтингу (по уменьшению)</option>
             <option value="increaseRate">По рейтингу (по увеличению)</option>
             <option value="increaseYear">По годам (20 век - н.в)</option>
             <option value="declineYear">По годам (н.в - 20 век)</option>
@@ -238,7 +235,7 @@ export default function FilmList() {
                 i >= currentPage * filmsOnPage &&
                 i < currentPage * filmsOnPage + filmsOnPage
               ) {
-                return <FilmCard film={film} />;
+                return <FilmCard key={i} film={film} />;
               }
               return false;
             })}
@@ -278,7 +275,7 @@ export default function FilmList() {
           pages.length > 0 &&
           pages.map((_, index) => {
             return (
-              <PaginationItem active={currentPage === index}>
+              <PaginationItem key={index} active={currentPage === index}>
                 {/* Переход на выбранную страницу */}
                 <PaginationLink
                   href="#"

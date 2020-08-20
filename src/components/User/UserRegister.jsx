@@ -15,11 +15,11 @@ export default function UserRegister() {
 
   return (
     <>
-      <div class="user_forms-signup">
-        <h2 class="forms_title">Регистрация</h2>
+      <div className="user_forms-signup">
+        <h2 className="forms_title">Регистрация</h2>
         {/* <pre style={{ color: 'white' }}>{JSON.stringify(state, null, 2)}</pre> */}
         <form
-          class="forms_form"
+          className="forms_form"
           name="register"
           onSubmit={async (e) => {
             e.preventDefault();
@@ -90,10 +90,10 @@ export default function UserRegister() {
             history.push('/films');
           }}
         >
-          <fieldset class="forms_fieldset">
-            <div class="forms_field">
+          <fieldset className="forms_fieldset">
+            <div className="forms_field">
               <input
-                class="forms_field-input"
+                className="forms_field-input"
                 required
                 type="text"
                 name="userName"
@@ -106,9 +106,9 @@ export default function UserRegister() {
               />
             </div>
 
-            <div class="forms_field">
+            <div className="forms_field">
               <input
-                class="forms_field-input"
+                className="forms_field-input"
                 required
                 type="email"
                 name="email"
@@ -119,9 +119,9 @@ export default function UserRegister() {
               />
             </div>
 
-            <div class="forms_field">
+            <div className="forms_field">
               <input
-                class="forms_field-input"
+                className="forms_field-input"
                 required
                 type="password"
                 name="password"
@@ -134,11 +134,11 @@ export default function UserRegister() {
               />
             </div>
           </fieldset>
-          <div class="forms_buttons">
+          <div className="forms_buttons">
             <input
               type="submit"
               value="Зарегаться"
-              class="forms_buttons-action"
+              className="forms_buttons-action"
             />
           </div>
         </form>
