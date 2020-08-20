@@ -2,10 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/action';
 import firebase from '../../FireBaseConnection';
+import { useHistory } from 'react-router-dom';
 
 import { useInputs, submit } from '../Input/Input';
 
 const Login = () => {
+  const history = useHistory();
   const [inputs, setInputs] = useInputs({
     email: 'qwe@mail.ru',
     password: '123456',
@@ -22,7 +24,6 @@ const Login = () => {
           <fieldset class="forms_fieldset">
             <div class="forms_field">
               <input
-                type="email"
                 class="forms_field-input"
                 placeholder="Email"
                 name="email"
@@ -30,6 +31,7 @@ const Login = () => {
                 autofocus
                 value={inputs.email}
                 onChange={setInputs}
+                type="email"
               />
             </div>
             <div class="forms_field">
@@ -53,6 +55,17 @@ const Login = () => {
               onClick={async (e) => {
                 e.preventDefault();
                 const loginData = await submit(inputs, 'signInWithPassword');
+                if (loginData.message === 'EMAIL_NOT_FOUND') {
+                  alert('Такой Email не найден!');
+                  return;
+                } else if (loginData.message === 'INVALID_PASSWORD') {
+                  alert('Неверный пароль!');
+                  return;
+                } else if (loginData.message) {
+                  alert('Что-то пошло не так!');
+                  return;
+                }
+
                 console.log('loginData> ', loginData);
                 const ref = firebase.database().ref('users');
                 ref
@@ -82,6 +95,7 @@ const Login = () => {
                     document.cookie = `user_auth_id=${loginData.localId}; max-age=${loginData.expiresIn}`;
                     document.cookie = `user_id=${user.IDuserInCollectionFB}; max-age=${loginData.expiresIn}`;
                     dispatch(setUser(user));
+                    history.push('/films');
                   });
               }}
             />

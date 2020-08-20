@@ -17,7 +17,7 @@ export default function FilmCard(props) {
   const user = useSelector((state) => state.user.localId);
   const userObj = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(user);
+  // console.log(user);
   const { film } = props;
   const [bookmarked, setBookmarked] = useState();
   const [liked, setLiked] = useState();
@@ -91,8 +91,8 @@ export default function FilmCard(props) {
                   if (user !== undefined) {
                     if (bookmarked) {
                       // удалить фильтром из массива текущ фильм
-                      dispatch(delBookmark(film));
-                      console.log('delay delete');
+                      dispatch(delBookmark(film.filmId));
+                      // console.log('delay delete');
                     } else {
                       dispatch(addBookmark(film));
                     }
@@ -139,8 +139,8 @@ export default function FilmCard(props) {
                   if (user !== undefined) {
                     if (liked) {
                       // удалить фильтром из массива текущ фильм
-                      dispatch(delLike(film));
-                      console.log('delay delete');
+                      dispatch(delLike(film.filmId));
+                      // console.log('delay delete');
                     } else {
                       dispatch(addLike(film));
                     }

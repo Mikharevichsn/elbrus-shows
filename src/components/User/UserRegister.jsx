@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/action';
+import { useHistory } from 'react-router-dom';
 
 export default function UserRegister() {
+  const history = useHistory();
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -38,6 +40,29 @@ export default function UserRegister() {
             );
             const registerResult = await response.json();
             console.log(registerResult);
+            if (
+              registerResult.error &&
+              registerResult.error.message === 'EMAIL_EXISTS'
+            ) {
+              alert('Такой Email уже занят!');
+              return;
+            } else if (
+              registerResult.error &&
+              registerResult.error.message ===
+                'WEAK_PASSWORD : Password should be at least 6 characters'
+            ) {
+              alert('Пароль должен быть минимум 6 символов!');
+              return;
+            } else if (
+              registerResult.error &&
+              registerResult.error.message === 'INVALID_EMAIL'
+            ) {
+              alert('С Email-ом что-то не так!');
+              return;
+            } else if (registerResult.error) {
+              alert('Что-то пошло не так!');
+              return;
+            }
             // document.cookie = `user_idTocken=${registerResult.idToken}; secure`;
             document.cookie = `user_idToken=${registerResult.idToken}; max-age=${registerResult.expiresIn}`;
 
@@ -62,6 +87,7 @@ export default function UserRegister() {
             console.log('userResult>>', userResult);
             document.cookie = `user_auth_id=${registerResult.localId}; max-age=${registerResult.expiresIn}`;
             document.cookie = `user_id=${userResult.name}; max-age=${registerResult.expiresIn}`;
+            history.push('/films');
           }}
         >
           <fieldset class="forms_fieldset">

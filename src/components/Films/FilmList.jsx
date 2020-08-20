@@ -14,12 +14,13 @@ export default function FilmList() {
   const [sort, setSort] = useState('');
   const countPages = Math.ceil(filteredFilms.length / filmsOnPage);
   const pages = new Array(countPages).fill('');
+  const [msgNoFilms, setMsgNoFilms] = useState('');
 
-  useEffect(() => {
-    if (filteredFilms.length === 0) {
-      console.log('По данным критериям поиска фильмов нет!');
-    }
-  }, [filteredFilms]);
+  // useEffect(() => {
+  //   if (filteredFilms.length === 0) {
+  //     console.log('По данным критериям поиска фильмов нет!');
+  //   }
+  // }, [filteredFilms]);
 
   // Фильтры---------------------
   useEffect(() => {
@@ -119,6 +120,12 @@ export default function FilmList() {
     }
   }, [sort, genre, country]);
 
+  useEffect(() => {
+    filteredFilms.length === 0
+      ? setMsgNoFilms('По вашим критериям поиска кинчиков не найдено')
+      : setMsgNoFilms('');
+  }, [filteredFilms]);
+
   filmList &&
     filteredFilms.map((film, i) => {
       if (
@@ -138,6 +145,8 @@ export default function FilmList() {
             className="film-select"
             name=""
             id=""
+            value="Выберите жанр"
+            defaultValue="Выберите жанр"
             onChange={(event) => {
               setCurrentPage(0);
               setGenre(event.target.value);
@@ -190,9 +199,8 @@ export default function FilmList() {
         </div>
         {/* Сортировка */}
         <div>
-          <p1>Сортировка: </p1>
           <select
-            className="film-select"
+            className="film-select sort"
             name=""
             id=""
             onChange={(event) => {
@@ -266,24 +274,26 @@ export default function FilmList() {
           </PaginationItem>
         )}
 
-        {pages.map((_, index) => {
-          return (
-            <PaginationItem active={currentPage === index}>
-              {/* Переход на выбранную страницу */}
-              <PaginationLink
-                href="#"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setCurrentPage(index);
-                }}
-              >
-                {index + 1}
-              </PaginationLink>
-            </PaginationItem>
-          );
-        })}
+        {pages &&
+          pages.length > 0 &&
+          pages.map((_, index) => {
+            return (
+              <PaginationItem active={currentPage === index}>
+                {/* Переход на выбранную страницу */}
+                <PaginationLink
+                  href="#"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setCurrentPage(index);
+                  }}
+                >
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            );
+          })}
 
-        {currentPage !== pages.length - 1 && (
+        {pages && pages.length > 0 && currentPage !== pages.length - 1 && (
           <PaginationItem>
             {/* Переход на страницу вперед */}
             <PaginationLink
@@ -297,7 +307,7 @@ export default function FilmList() {
           </PaginationItem>
         )}
 
-        {currentPage !== pages.length - 1 && (
+        {pages && pages.length > 0 && currentPage !== pages.length - 1 && (
           <PaginationItem>
             <PaginationLink
               // {/* Переход на последнюю страницу */}
@@ -311,6 +321,8 @@ export default function FilmList() {
           </PaginationItem>
         )}
       </Pagination>
+
+      <h2>{msgNoFilms}</h2>
     </>
   );
 }
