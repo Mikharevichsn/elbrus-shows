@@ -94,7 +94,7 @@ export default function FilmCard(props) {
                       dispatch(delBookmark(film.filmId));
                       // console.log('delay delete');
                     } else {
-                      dispatch(addBookmark(film.filmId));
+                      dispatch(addBookmark(film));
                     }
                   }
                 }}
@@ -142,7 +142,7 @@ export default function FilmCard(props) {
                       dispatch(delLike(film.filmId));
                       // console.log('delay delete');
                     } else {
-                      dispatch(addLike(film.filmId));
+                      dispatch(addLike(film));
                     }
                   }
                 }}
