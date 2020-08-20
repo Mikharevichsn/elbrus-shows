@@ -27,7 +27,6 @@ const MoreDetails = () => {
     dispatch(startVideoFetch(film.filmId));
    
     
-    console.log(video)
   }, [ film.filmId, dispatch]);
 
 console.log(video)

@@ -27,15 +27,11 @@ export const getContent = () => {
 
 export const saveComment = (obj) => {
   return async (dispatch) => {
-    await fetch(
-      'https://elbrus-shows.firebaseio.com/comments.json',
-      {
-        method: 'POST',
-        body: JSON.stringify(obj),
-        headers: { 'Content-type': 'application/json' },
-      }
-    );
-    console.log(obj);
+    await fetch('https://elbrus-shows.firebaseio.com/comments.json', {
+      method: 'POST',
+      body: JSON.stringify(obj),
+      headers: { 'Content-type': 'application/json' },
+    });
     return dispatch({
       type: SAVE_COMMENTS,
       payload: [obj],
@@ -45,6 +41,15 @@ export const saveComment = (obj) => {
 
 export const setComments = (idFilm) => {
   return async (dispatch) => {
+    const checkRating = (actor, scenario, general) => {
+      console.log(actor);
+      console.log(Number(actor) + Number(scenario) + Number(general));
+      return Number(actor) + Number(scenario) + Number(general);
+    };
+
+    const setColor = (num) =>
+      num >= 12 ? 'success' : num >= 9 ? 'warning' : 'danger';
+
     const response = await fetch(
       'https://elbrus-shows.firebaseio.com/comments.json',
       {
@@ -61,7 +66,13 @@ export const setComments = (idFilm) => {
         }
       }
     }
-    console.log(arr);
+    arr.map(
+      (el) =>
+        (el.result = setColor(
+          checkRating(el.rating.actors, el.rating.scenario, el.rating.general)
+        ))
+    );
+
     return dispatch({
       type: SET_COMMENTS,
       payload: arr,

@@ -28,13 +28,11 @@ export const reducer = (state, action) => {
         videoUrl: action.payload,
       };
     case SET_COMMENTS:
-      console.log(state);
       return {
         ...state,
         comments: [ ...action.payload],
       };
       case SAVE_COMMENTS:
-        console.log(state);
         return {
           ...state,
           comments: [...state.comments, ...action.payload],

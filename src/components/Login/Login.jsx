@@ -20,25 +20,40 @@ const Login = () => {
 
   return (
     <>
-      <Row>
-        <Col md={{ size: 6, offset: 3 }}>
-          <Form>
-            <Input
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={inputs.email}
-              onChange={setInputs}
-            ></Input>
-            <Input
-              type="password"
-              placeholder="password"
-              name="password"
-              value={inputs.password}
-              onChange={setInputs}
-            ></Input>
-            <Button
+      <div class="user_forms-login">
+        <h2 class="forms_title">Авторизация</h2>
+        <form class="forms_form">
+          <fieldset class="forms_fieldset">
+            <div class="forms_field">
+              <input
+                type="email"
+                class="forms_field-input"
+                placeholder="Email"
+                name="email"
+                required
+                autofocus
+                value={inputs.email}
+                onChange={setInputs}
+              />
+            </div>
+            <div class="forms_field">
+              <input
+                type="password"
+                placeholder="Пароль"
+                class="forms_field-input"
+                name="password"
+                value={inputs.password}
+                onChange={setInputs}
+                required
+              />
+            </div>
+          </fieldset>
+          <div class="forms_buttons">
+            <div></div>
+            <input
               type="submit"
+              value="Войти"
+              class="forms_buttons-action"
               onClick={async (e) => {
                 e.preventDefault();
                 const loginData = await submit(inputs, 'signInWithPassword');
@@ -73,15 +88,10 @@ const Login = () => {
                     dispatch(setUser(user));
                   });
               }}
-            >
-              Submit
-            </Button>
-          </Form>
-          <Link className="link" to="/registration">
-            <Button>Регистрация</Button>
-          </Link>
-        </Col>
-      </Row>
+            />
+          </div>
+        </form>
+      </div>
     </>
   );
 };

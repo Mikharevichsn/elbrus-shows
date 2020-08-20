@@ -14,6 +14,7 @@ import MoreDetails from './components/Films/MoreDeralisFilm/MoreDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from './redux/action';
 import UserInfo from './components/User/UserInfo';
+import AuthReg from './components/User/AuthReg/AuthReg';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/registration">
             <UserRegister />
+          </Route>
+          <Route path="/log-in">
+            <AuthReg />
           </Route>
           <Route path="/">
             <Content />
