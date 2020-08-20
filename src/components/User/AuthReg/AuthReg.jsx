@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.sass';
 import UserRegister from '../UserRegister';
 import Login from '../../Login/Login';
 
 export default function AuthReg() {
+  const [classForm, setClassForm] = useState('');
+
   return (
     <section className="user">
       <div className="user_options-container">
@@ -14,7 +16,13 @@ export default function AuthReg() {
               Зарегистрируйся и сохраняй в закладки кинчики, которые планируешь
               посмотреть ;-)
             </p>
-            <button className="user_unregistered-signup" id="signup-button">
+            <button
+              className="user_unregistered-signup"
+              id="signup-button"
+              onClick={() => {
+                setClassForm('bounceLeft');
+              }}
+            >
               Зарегистрироваться
             </button>
           </div>
@@ -24,13 +32,22 @@ export default function AuthReg() {
             <p className="user_registered-text">
               Круто! Авторизуйся и будет тебе Щасье!
             </p>
-            <button className="user_registered-login" id="login-button">
+            <button
+              className="user_registered-login"
+              id="login-button"
+              onClick={() => {
+                setClassForm('bounceRight');
+              }}
+            >
               Войти
             </button>
           </div>
         </div>
 
-        <div className="user_options-forms" id="user_options-forms">
+        <div
+          className={`user_options-forms ${classForm}`}
+          id="user_options-forms"
+        >
           <Login />
           <UserRegister />
         </div>

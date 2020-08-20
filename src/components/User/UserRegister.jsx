@@ -143,7 +143,6 @@ export default function UserRegister() {
           </div>
         </form>
       </div>
-      <script defer src="/client-login-form.js"></script>
     </>
   );
 }
