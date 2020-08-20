@@ -47,6 +47,7 @@ pre {
 
 .container nav ul.pagination {
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .filter {
@@ -64,6 +65,10 @@ pre {
   font-size: larger;
 }
 
+.btn {
+  padding: 0.5em !important;
+}
+
 /* .filmList {
   display: flex;
   justify-content: space-between;
@@ -76,3 +81,13 @@ pre {
     width: auto;
   }
 } */
+
+h2 {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+ul.navbar.navbar-dark.bg-dark.menu.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

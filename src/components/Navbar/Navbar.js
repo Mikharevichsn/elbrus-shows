@@ -12,33 +12,25 @@ const NavBar = () => {
       <Link to="/">
         <img className="logo" src={logo} alt="logo" />
       </Link>
-      <NavItem className="a">
-        <Link className="link" to="/registration">
-          Регистрация
-        </Link>
-      </NavItem>
-      <NavItem className="a">
-        <Link className="link" to="/films">
-          Кинчики
-        </Link>
-      </NavItem>
-      {user.localId && (
+      <div>
+        <NavItem className="a">
+          <Link className="link" to="/films">
+            Кинчики
+          </Link>
+        </NavItem>
+        <NavItem className="a">
+          <Link className="link" to="/log-in">
+            Sign in
+          </Link>
+        </NavItem>
+    {user.localId && (
         <NavItem className="a">
           <Link className="link" to="/MyCabinet">
             Мой кабинет
           </Link>
         </NavItem>
       )}
-      <NavItem className="a">
-        <Link className="link" to="/login">
-          Войти
-        </Link>
-      </NavItem>
-      <NavItem className="a">
-        <Link className="link" to="/log-in">
-          new Регистрация
-        </Link>
-      </NavItem>
+      </div>
     </Nav>
   );
 };
