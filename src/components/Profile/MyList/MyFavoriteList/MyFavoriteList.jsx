@@ -133,7 +133,7 @@ useEffect(() => {
               items.right.map((item) => (
                 <GridItem key={Math.random() * (200 - 1) + 1}>
                   <div className="grid-item">
-                    <div className="grid-item-content">{item.poster}</div>
+                    <div className="grid-item-content" >{item.poster}</div>
                   </div>
                 </GridItem>
               ))}

@@ -8,7 +8,6 @@ import {
   Row,
   Col,
   ListGroup,
-  ListGroupItemHeading,
   ListGroupItem,
 } from 'reactstrap';
 import actor from '../../../../public/img/actor.png';
@@ -34,7 +33,7 @@ useEffect(() => {
     setCount(comments.length)
 
   }  
-}, [comments]);
+}, [comments, filmIdParams, count, dispatch]);
 
 
 
