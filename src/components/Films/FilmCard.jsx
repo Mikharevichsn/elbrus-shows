@@ -52,22 +52,26 @@ export default function FilmCard(props) {
           <CardSubtitle>
             <div className="film-list-country">
               Страна:{' '}
-              {film.countries.map((el, i) => {
-                if (film.countries.length - 1 === i) {
-                  return el.country;
-                } else {
-                  return `${el.country}, `;
-                }
-              })}
+              {film &&
+                film.countries &&
+                film.countries.map((el, i) => {
+                  if (film.countries.length - 1 === i) {
+                    return el.country;
+                  } else {
+                    return `${el.country}, `;
+                  }
+                })}
             </div>
             Жанр:{' '}
-            {film.genres.map((el, i) => {
-              if (film.genres.length - 1 === i) {
-                return el.genre;
-              } else {
-                return `${el.genre}, `;
-              }
-            })}
+            {film &&
+              film.genres &&
+              film.genres.map((el, i) => {
+                if (film.genres.length - 1 === i) {
+                  return el.genre;
+                } else {
+                  return `${el.genre}, `;
+                }
+              })}
           </CardSubtitle>
           <div className="film-card-buttons">
             <div>
