@@ -9,8 +9,8 @@ import { useInputs, submit } from '../Input/Input';
 const Login = () => {
   const history = useHistory();
   const [inputs, setInputs] = useInputs({
-    email: 'qwe@mail.ru',
-    password: '123456',
+    email: '',
+    password: '',
   });
   const dispatch = useDispatch();
   // const userRef = firebase.database().ref('users/-MF-RBlqqh4xVvu_AL-5');
