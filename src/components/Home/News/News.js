@@ -132,7 +132,7 @@ export class Slider extends React.Component {
   }
 
   render() {
-    const { current, direction } = this.state
+    const { current } = this.state
     const { slides, heading } = this.props 
     const headingId = `slider-heading__${heading.replace(/\s+/g, '-').toLowerCase()}`
     const wrapperTransform = {
@@ -174,47 +174,3 @@ export class Slider extends React.Component {
   }
 }
 
-
-// const News = () => {
-//   const news = useSelector((state) => state.news.articles); //Ссылка на хранилище
-
-  
-
-//   const dispatch = useDispatch();
-
-//   useEffect(() => {
-//     //useEffect для загрузки контента при внедрение этого компонента
-//     dispatch(getNews());
-//   }, [dispatch]);
-
-//   console.log(news[0].urlToImage);
-
-//   return (
-//     <>
-//       {news &&
-//         news.map((el, i) => {
-//           return (
-//             <>
-//               <section
-//                 class="sec4"
-//                 style={{
-//                   background: `url(${el.urlToImage}) no-repeat`,
-//                   backgroundAttachment: 'fixed',
-//                   backgroundSize: '100%',
-//                 }}
-//               >
-//                 {' '}
-//               </section>
-//               <div class="sec-text">
-//                 <h3 class="sec-text__title">{el.title}</h3>
-//                 <p class="sec-text__dsc">{el.description} </p>
-//               </div>
-//               )}
-//             </>
-//           );
-//         })}
-//     </>
-//   );
-// };
-
-// export default News;

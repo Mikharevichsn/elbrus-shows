@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './style.css';
 
@@ -9,19 +9,18 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
   Form,
-  FormGroup,
   Dropdown,
   DropdownMenu,
   DropdownItem,
   DropdownToggle,
   Row,
   UncontrolledTooltip,
+  Col
 } from 'reactstrap';
 import { useInputs } from '../../../Input/Input';
 import { useParams } from 'react-router-dom';
-import { saveComment, setComments } from '../../../../redux/action';
+import { saveComment } from '../../../../redux/action';
 import actorIcon from '../../../../public/img/actor.png';
 import writerIcon from '../../../../public/img/writer.png';
 import popcornIcon from '../../../../public/img/popcorn.png';
@@ -103,11 +102,13 @@ const ModalComments = (props) => {
         </ModalHeader>
         <ModalBody>
           <Row>
+            
             <Dropdown
               isOpen={dropdownOpen1}
               toggle={toggleDropDown}
               name="scenario"
             >
+              
               <Dropdown isOpen={dropdownOpen2} toggle={toggleDropDown2}>
                 <DropdownToggle caret>Актерская игра</DropdownToggle>
                 <DropdownMenu name="actors" onClick={setRating}>
