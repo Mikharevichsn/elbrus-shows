@@ -9,27 +9,22 @@ import {
 import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
-import {  addArrBookmarks, addArrLikes } from '../../../../redux/action';
-
-
+import { addArrBookmarks, addArrLikes } from '../../../../redux/action';
 
 export const MyFavoriteList = () => {
   const user = useSelector((state) => state.user);
-const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
 
   const [items, setItems] = React.useState({
     left: [],
     right: [],
   });
 
-  const [check, setCheck] = React.useState(false)
- 
-  const onClickSaveState = (arr) => {
-    return arr.map(el => el.allInfo) 
-  }
+  const [check, setCheck] = React.useState(false);
 
+  const onClickSaveState = (arr) => {
+    return arr.map((el) => el.allInfo);
+  };
 
   console.log('items>>>>>>', items);
 
@@ -49,7 +44,7 @@ const dispatch = useDispatch()
       poster: el.nameRu,
     }));
     setItems((state) => ({ ...state, left: [...favoriteList] }));
-  }, [check, user.favoriteList])
+  }, [check, user.favoriteList]);
 
   useEffect(() => {
     const wishList = user.wishList.map((el, i) => ({
@@ -60,15 +55,14 @@ const dispatch = useDispatch()
     setItems((state) => ({ ...state, right: [...wishList] }));
   }, [user.wishList]);
 
-
-useEffect(() => {
-  const wishList = user.wishList.map((el, i) => ({
-    allInfo: el,
-    id: i + 1,
-    poster: el.nameRu,
-  }));
-  setItems((state) => ({ ...state, right: [...wishList] }));
-}, [check, user.wishList])
+  useEffect(() => {
+    const wishList = user.wishList.map((el, i) => ({
+      allInfo: el,
+      id: i + 1,
+      poster: el.nameRu,
+    }));
+    setItems((state) => ({ ...state, right: [...wishList] }));
+  }, [check, user.wishList]);
 
   function onChange(sourceId, sourceIndex, targetIndex, targetId) {
     if (targetId) {
@@ -95,13 +89,22 @@ useEffect(() => {
   return (
     <>
       <Row>
-        
-        <Col>
+        <Col lg="4" className="user-cabinet-left">
           <h4>Любимые фильмы</h4>
         </Col>
-        <Col><Button onClick = {() =>{ dispatch(addArrBookmarks(onClickSaveState(items.right))); dispatch(addArrLikes(onClickSaveState(items.left))); setCheck(state => !state)}}>Сохранить</Button></Col>
+        <Col lg="4" className="user-cabinet-center">
+          <Button
+            onClick={() => {
+              dispatch(addArrBookmarks(onClickSaveState(items.right)));
+              dispatch(addArrLikes(onClickSaveState(items.left)));
+              setCheck((state) => !state);
+            }}
+          >
+            Сохранить
+          </Button>
+        </Col>
 
-        <Col>
+        <Col lg="4" className="user-cabinet-right">
           <h4>Хочу посмотреть</h4>
         </Col>
       </Row>
@@ -136,7 +139,7 @@ useEffect(() => {
               items.right.map((item) => (
                 <GridItem key={Math.random() * (200 - 1) + 1}>
                   <div className="grid-item">
-                    <div className="grid-item-content" >{item.poster}</div>
+                    <div className="grid-item-content">{item.poster}</div>
                   </div>
                 </GridItem>
               ))}

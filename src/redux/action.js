@@ -93,6 +93,7 @@ export const getNews = () => {
     const response = await fetch(
       'http://newsapi.org/v2/top-headlines?everything&q=film&apiKey=686123decd0949248e97c5cdc966645b'
     );
+    // const result = await response.json();
     const result = await response.clone().json();
     console.log(result.articles);
     // result.filter(el => el.articles === '')
