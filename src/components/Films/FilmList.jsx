@@ -98,7 +98,7 @@ export default function FilmList() {
           b.filmLength.replace(/:/, '.');
           if (a.filmLength > b.filmLength) return 1;
           if (a.filmLength < b.filmLength) return -1;
-          return  
+          return;
         })
       );
     } else if (sort === 'declineDuration') {
@@ -137,6 +137,7 @@ export default function FilmList() {
   }, [filteredFilms]);
 
   filmList &&
+    filteredFilms &&
     filteredFilms.map((film, i) => {
       if (
         i >= currentPage * filmsOnPage &&
@@ -150,7 +151,7 @@ export default function FilmList() {
   return (
     <>
       <div className="filter">
-        <div>
+        <div className="left">
           <select
             className="film-select"
             name=""
@@ -251,6 +252,7 @@ export default function FilmList() {
       <div className="filmList">
         <Row>
           {filmList &&
+            filteredFilms &&
             filteredFilms.map((film, i) => {
               if (
                 i >= currentPage * filmsOnPage &&

@@ -13,8 +13,8 @@ import {
   ADD_LIKE,
   DEL_LIKE,
   ADD_ARR_BOOKMARKS,
-  ADD_ARR_LIKES
-  
+  ADD_ARR_LIKES,
+  DEL_USER,
 } from './actionTypes';
 
 const checkRating = (actor, scenario, general) =>
@@ -132,7 +132,6 @@ export const setUser = (payload) => {
 };
 
 export const addBookmark = (payload) => {
-  
   return {
     type: ADD_BOOKMARK,
     payload,
@@ -146,9 +145,7 @@ export const delBookmark = (payload) => {
   };
 };
 
-
 export const addArrBookmarks = (payload) => {
-  
   return {
     type: ADD_ARR_BOOKMARKS,
     payload,
@@ -156,13 +153,11 @@ export const addArrBookmarks = (payload) => {
 };
 
 export const addArrLikes = (payload) => {
-  
   return {
     type: ADD_ARR_LIKES,
     payload,
   };
 };
-
 
 export const addLike = (payload) => {
   return {
@@ -174,5 +169,11 @@ export const delLike = (payload) => {
   return {
     type: DEL_LIKE,
     payload,
+  };
+};
+
+export const delUser = () => {
+  return {
+    type: DEL_USER,
   };
 };
