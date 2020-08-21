@@ -88,7 +88,7 @@ export default function FilmList() {
           b.filmLength.replace(/:/, '.');
           if (a.filmLength > b.filmLength) return 1;
           if (a.filmLength < b.filmLength) return -1;
-          return 0;
+          return  
         })
       );
     } else if (sort === 'declineDuration') {
