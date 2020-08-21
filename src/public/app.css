@@ -105,6 +105,14 @@ h2 {
   margin-right: 3px;
 }
 
+.user-cabinet-center {
+  text-align: center;
+}
+
+.user-cabinet-right {
+  text-align: right;
+}
+
 /* .filmList {
   display: flex;
   justify-content: space-between;
