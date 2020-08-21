@@ -5,11 +5,10 @@ import Statistics from '../Statics/Statistics';
 const MyCabinet = () => {
   return (
     <div>
-      <MyList/>
-      <Statistics/>
+      <MyList />
+      {/* <Statistics/> */}
     </div>
   );
-}
+};
 
 export default MyCabinet;
-

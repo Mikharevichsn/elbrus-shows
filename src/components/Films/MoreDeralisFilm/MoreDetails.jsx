@@ -7,7 +7,6 @@ import ModalComments from './ModalComment/ModalComments';
 import Comments from './Comments/Comments';
 
 const MoreDetails = () => {
-
   const dispatch = useDispatch();
 
   const moreDetalisFilm = useSelector((state) => state.moreDetalisFilm);
