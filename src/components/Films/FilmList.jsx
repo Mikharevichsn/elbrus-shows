@@ -43,8 +43,8 @@ export default function FilmList() {
       } else if (searchedFilms.length !== 0) {
         return filmList.filter((film) => {
           if (
-            film.nameRu === searchedFilms ||
-            film.nameRu.toLowerCase() === searchedFilms
+            film.nameRu.toLowerCase().trim().replace(/\s+/g, '') ===
+            searchedFilms
           ) {
             return film;
           }
@@ -205,10 +205,14 @@ export default function FilmList() {
             <option value="Япония">Япония</option>
           </select>
           {/* Поиск фильма */}
-          <input type='search' placeholder="Введите название фильма" className="search-film"
-            onClick={(event) => {
-              setSearchFilm(event.target.value);
-              console.log(searchedFilms.length);
+          <input
+            type="search"
+            placeholder="Введите название фильма"
+            className="search-film"
+            onChange={(event) => {
+              setSearchFilm(
+                event.target.value.toLowerCase().replace(/\s+/g, '')
+              );
             }}
           ></input>
         </div>
