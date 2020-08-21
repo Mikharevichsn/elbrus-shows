@@ -11,6 +11,7 @@ export default function FilmList() {
   const [genre, setGenre] = useState('all');
   const [country, setCountry] = useState('all');
   const [filteredFilms, setFilteredFilms] = useState([]);
+  const [searchedFilms, setSearchFilm] = useState('');
   const [sort, setSort] = useState('');
   const countPages = Math.ceil(filteredFilms.length / filmsOnPage);
   const pages = new Array(countPages).fill('');
@@ -39,11 +40,20 @@ export default function FilmList() {
         return filmList.filter((film) =>
           film.countries.some((el) => el.country === country)
         );
+      } else if (searchedFilms.length !== 0) {
+        return filmList.filter((film) => {
+          if (
+            film.nameRu === searchedFilms ||
+            film.nameRu.toLowerCase() === searchedFilms
+          ) {
+            return film;
+          }
+        });
       } else {
         return [...filmList];
       }
     });
-  }, [genre, country, filmList]);
+  }, [genre, country, filmList, searchedFilms]);
 
   // Сортировка-------------------
   useEffect(() => {
@@ -122,7 +132,7 @@ export default function FilmList() {
 
   useEffect(() => {
     filteredFilms.length === 0
-      ? setMsgNoFilms('По вашим критериям поиска кинчиков не найдено')
+      ? setMsgNoFilms('По вашим критериям поиска фильмов не найдено!')
       : setMsgNoFilms('');
   }, [filteredFilms]);
 
@@ -194,6 +204,13 @@ export default function FilmList() {
             <option value="Корея Южная">Корея Южная</option>
             <option value="Япония">Япония</option>
           </select>
+          {/* Поиск фильма */}
+          <input type='search' placeholder="Введите название фильма" className="search-film"
+            onClick={(event) => {
+              setSearchFilm(event.target.value);
+              console.log(searchedFilms.length);
+            }}
+          ></input>
         </div>
         {/* Сортировка */}
         <div>
@@ -318,8 +335,7 @@ export default function FilmList() {
           </PaginationItem>
         )}
       </Pagination>
-
-      <h2>{msgNoFilms}</h2>
+      <h2 className="no-film-message"> {msgNoFilms}</h2>
     </>
   );
 }
