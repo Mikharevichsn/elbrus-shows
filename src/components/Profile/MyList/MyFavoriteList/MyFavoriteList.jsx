@@ -27,10 +27,7 @@ const dispatch = useDispatch()
   const [check, setCheck] = React.useState(false)
  
   const onClickSaveState = (arr) => {
-    console.log(arr)
-    return arr.map(el => el.allInfo)
-    
-    
+    return arr.map(el => el.allInfo) 
   }
 
 
@@ -72,12 +69,6 @@ useEffect(() => {
   }));
   setItems((state) => ({ ...state, right: [...wishList] }));
 }, [check, user.wishList])
-
-
-
-
-
-  console.log(items);
 
   function onChange(sourceId, sourceIndex, targetIndex, targetId) {
     if (targetId) {
