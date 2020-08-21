@@ -91,10 +91,11 @@ export const setComments = (idFilm) => {
 export const getNews = () => {
   return async (dispatch) => {
     const response = await fetch(
-      'http://newsapi.org/v2/top-headlines?country=ru&category=entertainment&apiKey=686123decd0949248e97c5cdc966645b'
+      'http://newsapi.org/v2/top-headlines?everything&q=film&apiKey=686123decd0949248e97c5cdc966645b'
     );
     const result = await response.clone().json();
     console.log(result.articles);
+    // result.filter(el => el.articles === '')
     return dispatch({
       type: GET_NEWS,
       payload: result,
