@@ -14,8 +14,8 @@ const NavBar = () => {
       </Link>
       <div className="navbar-links-group">
         <NavItem className="a">
-          <Link className="link" to="/films">
-            Фильмы
+          <Link className="link" to="/news">
+            Новости
           </Link>
         </NavItem>
         <NavItem className="a">
