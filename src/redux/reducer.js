@@ -11,7 +11,8 @@ import {
   ADD_LIKE,
   DEL_LIKE,
   ADD_ARR_BOOKMARKS,
-  ADD_ARR_LIKES
+  ADD_ARR_LIKES,
+  DEL_USER,
 } from './actionTypes';
 
 export const reducer = (state, action) => {
@@ -77,14 +78,14 @@ export const reducer = (state, action) => {
         },
       };
 
-      case ADD_ARR_BOOKMARKS:
-        return {
-          ...state,
-          user: {
-            ...state.user,
-            wishList: [ ...action.payload],
-          },
-        };
+    case ADD_ARR_BOOKMARKS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          wishList: [...action.payload],
+        },
+      };
 
     case ADD_LIKE:
       return {
@@ -95,16 +96,14 @@ export const reducer = (state, action) => {
         },
       };
 
-      
     case ADD_ARR_LIKES:
       return {
         ...state,
         user: {
           ...state.user,
-          favoriteList: [ ...action.payload],
+          favoriteList: [...action.payload],
         },
       };
-  
 
     case DEL_LIKE:
       const tmpFavoriteList = [...state.user.favoriteList].filter(
@@ -116,6 +115,12 @@ export const reducer = (state, action) => {
           ...state.user,
           favoriteList: [...tmpFavoriteList],
         },
+      };
+
+    case DEL_USER:
+      return {
+        ...state,
+        user: {},
       };
 
     default:

@@ -60,8 +60,8 @@ pre {
   border-radius: 5px;
   box-shadow: rgb(129, 53, 216) 0 0 15px 5px;
 }
-.search-film{
-  padding: 3.5px;
+.search-film {
+  padding: 5px;
   background-color: rgb(123, 79, 173);
   color: white;
   border-radius: 5px;
@@ -96,9 +96,13 @@ ul.navbar {
 h2 {
   font-family: 'Montserrat', sans-serif !important;
 }
-.no-film-message{
+.no-film-message {
   text-align: center;
-  color: rgb(123, 79, 173)
+  color: rgb(123, 79, 173);
+}
+
+.filter .left select {
+  margin-right: 3px;
 }
 
 /* .filmList {
@@ -108,8 +112,13 @@ h2 {
 } */
 
 @media (min-width: 1200px) {
-.container, .container-sm, .container-md, .container-lg, .container-xl {
-    max-width: 1200px !important;}
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 1200px !important;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -122,6 +131,9 @@ h2 {
   }
   .filter div select {
     margin: 10px 0;
+  }
+  .filter .left select {
+    margin-right: 0;
   }
   .menu li a {
     font-size: 18px;
@@ -140,7 +152,12 @@ h2 {
     margin-right: 0 !important;
   }
   .film-select.sort {
-    max-width: 80vw;
+    max-width: 75vw;
   }
-  
+}
+
+@media (max-width: 800px) {
+  .film-select.sort {
+    max-width: 65vw;
+  }
 }

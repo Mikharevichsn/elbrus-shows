@@ -1,11 +1,14 @@
 import React from 'react';
 import { Nav, NavItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../../public/img/logo.png';
 import './style.sass';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { delUser } from '../../redux/action';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.user);
   return (
     <Nav className="navbar  navbar-dark bg-dark menu">
@@ -18,17 +21,35 @@ const NavBar = () => {
             Новости
           </Link>
         </NavItem>
-        <NavItem className="a">
-          <Link className="link" to="/log-in">
-            Войти
-          </Link>
-        </NavItem>
-        {user.localId && (
+        {!user.localId && (
           <NavItem className="a">
-            <Link className="link" to="/MyCabinet">
-              Мой кабинет
+            <Link className="link" to="/log-in">
+              Войти
             </Link>
           </NavItem>
+        )}
+        {user.localId && (
+          <>
+            <NavItem className="a">
+              <Link
+                className="link"
+                to="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  localStorage.clear();
+                  dispatch(delUser());
+                  // history.push('/');
+                }}
+              >
+                Выйти
+              </Link>
+            </NavItem>
+            <NavItem className="a">
+              <Link className="link" to="/MyCabinet">
+                Мой кабинет
+              </Link>
+            </NavItem>
+          </>
         )}
       </div>
     </Nav>
