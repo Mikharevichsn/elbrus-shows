@@ -113,12 +113,14 @@ const MoreDetails = () => {
               >
                 <iframe
                   title="trailer"
-                  class="embed-responsive-item"
+                  // class="embed-responsive-item"
+                  allowfullscreen
+                  enablejsapi
                   src={
                     video.trailers[0] &&
                     video.trailers[0].url.replace(/watch\?v=/g, 'embed/')
                   }
-                  allowfullscreen
+                  
                 ></iframe>
               </Col>
             )}
@@ -126,10 +128,11 @@ const MoreDetails = () => {
               {moreDetalisFilm.description}
             </Col>
           </Row>
+          <Row className={'pt-5'}>{user.localId && <ModalComments />}</Row>
+
           <Row className={'pt-5'}>
             <Comments />
           </Row>
-          <Row className={'pt-5'}>{user.localId && <ModalComments />}</Row>
         </>
       )}
     </Container>

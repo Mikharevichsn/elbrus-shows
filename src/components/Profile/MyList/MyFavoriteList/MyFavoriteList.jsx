@@ -95,9 +95,12 @@ useEffect(() => {
   return (
     <>
       <Row>
+        
         <Col>
           <h4>Любимые фильмы</h4>
         </Col>
+        <Col><Button onClick = {() =>{ dispatch(addArrBookmarks(onClickSaveState(items.right))); dispatch(addArrLikes(onClickSaveState(items.left))); setCheck(state => !state)}}>Сохранить</Button></Col>
+
         <Col>
           <h4>Хочу посмотреть</h4>
         </Col>
@@ -139,7 +142,6 @@ useEffect(() => {
               ))}
           </GridDropZone>
         </div>
-        <Button onClick = {() =>{ dispatch(addArrBookmarks(onClickSaveState(items.right))); dispatch(addArrLikes(onClickSaveState(items.left))); setCheck(state => !state)}}>Сохранить</Button>
       </GridContextProvider>
     </>
   );
