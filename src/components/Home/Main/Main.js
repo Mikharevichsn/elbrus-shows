@@ -3,7 +3,6 @@ import { getNews } from '../../../redux/action';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Slider } from '../News/News';
-import RandomFilm from '../RandomFilm/RandomFilm';
 
 export const Main = () => {
   const news = useSelector((state) => state.news.articles); //Ссылка на хранилище
@@ -39,7 +38,6 @@ export const Main = () => {
   return (
     <>
       <Slider heading="Example Slider" slides={newsData} />
-      <RandomFilm />
     </>
   );
 };

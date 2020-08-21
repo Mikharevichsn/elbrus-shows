@@ -34,8 +34,8 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/films">
-            <FilmList />
+          <Route path="/news">
+            <Main />
           </Route>
           <Route path="/MyCabinet">
             <MyCabinet />
@@ -47,7 +47,7 @@ function App() {
             <AuthReg />
           </Route>
           <Route path="/">
-            <Main />
+            <FilmList />
           </Route>
         </Switch>
       </Container>
